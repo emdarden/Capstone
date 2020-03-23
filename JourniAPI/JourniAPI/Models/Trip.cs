@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace JourniAPI.Models
 {
     public class Trip
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public Activity[] Activites;
+        public List<Activity> Activites { get; set; } 
 
         public Trip()
         {
