@@ -3,7 +3,7 @@ namespace JourniAPI.Models
 {
     public class Activity
     {
-        public Guid Id { get; set; }
+        public string ActivityId { get; set; }
 
         public Activity()
         {

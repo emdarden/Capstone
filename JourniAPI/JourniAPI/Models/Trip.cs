@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 
 namespace JourniAPI.Models
 {
     public class Trip
     {
-        public string Id { get; set; }
+        //public ObjectId TripId { get; set; }
         public string Name { get; set; }
-        public List<Activity> Activites { get; set; } 
+        public List<Activity> Activities { get; set; } 
 
         public Trip()
         {
+            //TripId = ObjectId.GenerateNewId();
         }
     }
 }
