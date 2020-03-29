@@ -33,12 +33,40 @@ namespace JourniAPI.Controllers
             return user;
         }
 
+        [HttpGet]
+        public ActionResult<List<Trip>> GetTrips(string id)
+        {
+            var user = _userService.Get(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user.Trips;
+
+        }
+
         [HttpPost]
         public ActionResult<User> Create(User user)
         {
             _userService.Create(user);
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
+        }
+
+        public IActionResult AddTrip(string id, Trip trip)
+        {
+            var user = _userService.Get(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _userService.AddTrip(id, trip);
+
+            return NoContent();
         }
 
         [HttpPut("{id:length(24)}")]

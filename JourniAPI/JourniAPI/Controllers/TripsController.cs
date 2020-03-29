@@ -9,5 +9,10 @@ namespace JourniAPI.Controllers
         public TripsController()
         {
         }
+
+        public ActionResult<Trip> GetTrip(string tripId)
+        {
+
+        }
     }
 }
