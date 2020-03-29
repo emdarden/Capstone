@@ -18,7 +18,7 @@ import { LandingComponent } from './components/landing/landing.component';
     AppRoutingModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAns0oGUhhc06Beg84C1M8riOtZh_2VSK4'
+      apiKey: 'APIKEY'
     })
   ],
   providers: [],
