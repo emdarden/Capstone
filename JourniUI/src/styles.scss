@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "style/_base.scss";
+
+* {
+    font-family: $base-font-family;
+}
+
+body {
+    font-family: $base-font-family;
+    margin: 0;
+    padding: 0;
+}
