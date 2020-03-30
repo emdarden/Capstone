@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
+  query: string;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  callGoogleAPI(query){
+    
   }
 
 }
