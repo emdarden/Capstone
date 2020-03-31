@@ -1,8 +1,8 @@
 /// <reference types="@types/googlemaps" />
 import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader} from '@agm/core';
-
-
+import { ReplaySubject, Observable } from 'rxjs';
+import { SearchResultsService } from 'src/app/services/search-results.service';
 
 
 @Component({
@@ -14,9 +14,11 @@ export class SearchBarComponent implements OnInit {
 
   placeService: any;
   searchResults;
+  query: string;
+  //searchResults;
 
 
-  constructor(private mapsAPILoader: MapsAPILoader) {
+  constructor(private mapsAPILoader: MapsAPILoader, private searchResultsService: SearchResultsService) {
     this.mapsAPILoader.load().then(() => {
       this.placeService = new google.maps.places.PlacesService(document.createElement('div'));
 
@@ -41,10 +43,13 @@ export class SearchBarComponent implements OnInit {
      });
    };
     
-    this.searchResults = await googleSearch(request);
+   //this.searchResults = await googleSearch(request);
 
-    // console.log(this.searchResults)
+   this.searchResultsService.setSearchResults(await googleSearch(request))
+    
+   //console.log(this.searchResults)
 
   }
+
 
 }

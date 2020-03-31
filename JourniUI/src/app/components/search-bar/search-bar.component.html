@@ -2,3 +2,4 @@
     <input type="text" placeholder="Where to?" #search (keyup.enter)="callGoogleAPI(search.value)">
     <button class="search-btn" (click)="callGoogleAPI(search.value)">Search</button>
 </div>
+<app-search-results></app-search-results>
