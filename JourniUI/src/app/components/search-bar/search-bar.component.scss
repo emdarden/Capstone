@@ -1,0 +1,52 @@
+@import "../../../style/base";
+
+.search-bar {
+
+    display: flex;
+    // justify-content: space-around;
+    align-items: center;
+    width: fit-content;
+    // width: 40vw;
+    max-width: 550px;
+    min-width: 450px;
+    height: 60px;
+    margin: 0 auto;
+    margin-top: 100px;
+    
+
+    input {
+        width: 50vw;
+        height: 35px;
+        max-width: 300px;
+        font-family: $base-font-family;
+        font-size: 1.5rem;
+        border: none;
+        outline: none;
+        padding: 0 10px;
+        background-color: lighten($journi-grey, 70%);
+        border-top-left-radius: 35px;
+        border-bottom-left-radius: 35px;
+    }
+    
+    input:focus {
+        border: 1px solid $journi-orange;
+    }
+
+    input::placeholder {
+        font-family: $base-font-family;
+        text-align: center;
+    }
+
+    .search-btn {
+        height: 35px;
+        width: 75px;
+        background-color: $journi-grey;
+        border-bottom-right-radius: 35px;
+        border-top-right-radius: 35px;
+        font-size: 15px;
+        color: white;
+        outline: none;
+        cursor: pointer;
+        border: none;
+    }
+}

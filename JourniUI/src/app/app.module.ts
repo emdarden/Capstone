@@ -6,19 +6,25 @@ import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import {environment} from '../environments/environment';
+export const googleAPIKey = environment.googleAPIKey;
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent
+    LandingComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'APIKEY'
+      apiKey: googleAPIKey,
+      libraries: ["places"]
     })
   ],
   providers: [],
