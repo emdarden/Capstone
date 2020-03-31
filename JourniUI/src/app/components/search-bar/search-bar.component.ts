@@ -13,7 +13,6 @@ import { MapsAPILoader} from '@agm/core';
 export class SearchBarComponent implements OnInit {
 
   placeService: any;
-  query: string;
   searchResults;
 
 
@@ -44,7 +43,7 @@ export class SearchBarComponent implements OnInit {
     
     this.searchResults = await googleSearch(request);
 
-    console.log(this.searchResults)
+    // console.log(this.searchResults)
 
   }
 
