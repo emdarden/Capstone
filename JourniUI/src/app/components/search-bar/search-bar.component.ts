@@ -1,7 +1,7 @@
 /// <reference types="@types/googlemaps" />
 import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader} from '@agm/core';
-import { Observable } from 'rxjs';
+
 
 
 
@@ -13,8 +13,9 @@ import { Observable } from 'rxjs';
 export class SearchBarComponent implements OnInit {
 
   placeService: any;
-  query$: Observable<string>;
   query: string;
+  searchResults;
+
 
   constructor(private mapsAPILoader: MapsAPILoader) {
     this.mapsAPILoader.load().then(() => {
@@ -24,18 +25,27 @@ export class SearchBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.query$.subscribe(query => this.query = query)
   }
 
-  callGoogleAPI(query){
-    var request = {query: "things to do in " + query}
-   
+  async callGoogleAPI(query){
+    var request = {query: "things to do in " + query};
 
-    this.placeService.textSearch(request, function(results, status, pagination){
-      console.log(results);
-    });
+   const googleSearch = query => {
+     return new Promise((resolve, reject) => {
+       this.placeService.textSearch(query, (results, status) => {
+         if(status === 'OK') {
+           resolve(results);
+         } else {
+           reject(status);
+         }
+       });
+     });
+   };
     
-    // this.placeService = new google.maps.places.PlacesService(map);
+    this.searchResults = await googleSearch(request);
+
+    console.log(this.searchResults)
+
   }
 
 }
