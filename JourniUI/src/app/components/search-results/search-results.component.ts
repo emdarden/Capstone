@@ -20,7 +20,6 @@ export class SearchResultsComponent implements OnInit {
       console.log(this.searchResults);
     })
 
-    console.log("Here");
   }
 
 }

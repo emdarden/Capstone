@@ -1,8 +1,8 @@
 /// <reference types="@types/googlemaps" />
 import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader} from '@agm/core';
-import { ReplaySubject, Observable } from 'rxjs';
 import { SearchResultsService } from 'src/app/services/search-results.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,11 +14,9 @@ export class SearchBarComponent implements OnInit {
 
   placeService: any;
   searchResults;
-  query: string;
-  //searchResults;
+  showMap = false;
 
-
-  constructor(private mapsAPILoader: MapsAPILoader, private searchResultsService: SearchResultsService) {
+  constructor(private mapsAPILoader: MapsAPILoader, private searchResultsService: SearchResultsService, private router: Router) {
     this.mapsAPILoader.load().then(() => {
       this.placeService = new google.maps.places.PlacesService(document.createElement('div'));
 
@@ -30,6 +28,7 @@ export class SearchBarComponent implements OnInit {
 
   async callGoogleAPI(query){
     var request = {query: "things to do in " + query};
+
 
    const googleSearch = query => {
      return new Promise((resolve, reject) => {
@@ -47,6 +46,7 @@ export class SearchBarComponent implements OnInit {
 
    this.searchResultsService.setSearchResults(await googleSearch(request))
     
+   this.router.navigate(['/card-view']);
    //console.log(this.searchResults)
 
   }

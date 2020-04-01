@@ -9,6 +9,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {environment} from '../environments/environment';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { CardViewComponent } from './components/card-view/card-view.component';
 export const googleAPIKey = environment.googleAPIKey;
 
 
@@ -18,7 +19,8 @@ export const googleAPIKey = environment.googleAPIKey;
     AppComponent,
     LandingComponent,
     SearchBarComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    CardViewComponent
   ],
   imports: [
     BrowserModule,
