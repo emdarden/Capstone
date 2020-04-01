@@ -41,14 +41,19 @@ export class SearchBarComponent implements OnInit {
        });
      });
    };
-    
-   //this.searchResults = await googleSearch(request);
 
    this.searchResultsService.setSearchResults(await googleSearch(request))
-    
-   this.router.navigate(['/card-view']);
-   //console.log(this.searchResults)
 
+   this.navigateToResults(this.showMap);
+
+  }
+
+  navigateToResults(showMap: boolean){
+    if(showMap){
+      this.router.navigate(['/map-view']);
+    } else {
+      this.router.navigate(['/card-view']);
+    }
   }
 
 

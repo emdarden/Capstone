@@ -9,16 +9,10 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  private searchResultSubscription: Subscription;
-  searchResults;
-
-  constructor(private searchResultsService: SearchResultsService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.searchResultSubscription = this.searchResultsService.searchResults().subscribe(results => {
-      this.searchResults = results;
-      console.log(this.searchResults);
-    })
+
 
   }
 
