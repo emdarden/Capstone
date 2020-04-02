@@ -1,4 +1,3 @@
-<p>card-view works!</p>
-
-<p *ngFor="let place of searchResults"> {{place.name}}</p>
-
+<div class="cards">
+    <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="card"></app-card>
+</div>

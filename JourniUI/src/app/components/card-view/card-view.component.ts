@@ -15,9 +15,9 @@ export class CardViewComponent implements OnInit {
   constructor(private searchResultsService: SearchResultsService) { }
 
   ngOnInit(): void {
+    console.log(this.searchResults)
     this.searchResultSubscription = this.searchResultsService.searchResults().subscribe(results => {
       this.searchResults = results;
-      console.log(this.searchResults);
     })
 
   }

@@ -1,0 +1,33 @@
+.card {
+  // box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+  border-radius: .5rem;
+  width: 225px;
+  height: 290px;
+  
+  &-img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    border-top-right-radius: .5rem; 
+    border-top-left-radius: .5rem; 
+  }
+  
+  &-body {
+    height: 140px;
+    background-color: #fff;
+    border-bottom-right-radius: .5rem; 
+    border-bottom-left-radius: .5rem; 
+  }
+  
+  &-name {
+    margin: 0 0 0 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  
+  &-desscription {
+    margin: 0 0 2rem 0;
+  }
+}
+  

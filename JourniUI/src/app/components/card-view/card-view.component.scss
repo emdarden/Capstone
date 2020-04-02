@@ -1,0 +1,10 @@
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    background-color:rgb(241, 241, 241);
+}
+
+.card {
+    margin: 20px;
+    width: fit-content;
+}

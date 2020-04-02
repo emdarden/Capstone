@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader} from '@agm/core';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { Router } from '@angular/router';
+import * as data from '../../../assets/sampledata.json'
 
 
 @Component({
@@ -15,36 +16,45 @@ export class SearchBarComponent implements OnInit {
   placeService: any;
   searchResults;
   showMap = false;
+  detailService
+
+  sampleData: any = (data as any).default;
 
   constructor(private mapsAPILoader: MapsAPILoader, private searchResultsService: SearchResultsService, private router: Router) {
     this.mapsAPILoader.load().then(() => {
       this.placeService = new google.maps.places.PlacesService(document.createElement('div'));
-
     })
    }
 
   ngOnInit(): void {
   }
 
-  async callGoogleAPI(query){
+ getSearchResults(query){
     var request = {query: "things to do in " + query};
 
+    // const googleSearch = query => {
+    //   return new Promise((resolve, reject) => {
+    //     this.placeService.textSearch(query, (results, status) => {
+    //       if(status === 'OK') {
+    //         resolve(results);
+    //       } else {
+    //         reject(status);
+    //       }
+    //     })
+    //   }).then(results => {
+    //     return this.getDetails(results);
+    //   }).then(results => {
+    //     this.searchResultsService.setSearchResults(results);
+    //   })
+    // };
 
-   const googleSearch = query => {
-     return new Promise((resolve, reject) => {
-       this.placeService.textSearch(query, (results, status) => {
-         if(status === 'OK') {
-           resolve(results);
-         } else {
-           reject(status);
-         }
-       });
-     });
-   };
+    // googleSearch(request)
+    
+    this.searchResultsService.setSearchResults(this.sampleData);
 
-   this.searchResultsService.setSearchResults(await googleSearch(request))
+    console.log(this.sampleData);
 
-   this.navigateToResults(this.showMap);
+    this.navigateToResults(this.showMap);
 
   }
 
@@ -54,6 +64,28 @@ export class SearchBarComponent implements OnInit {
     } else {
       this.router.navigate(['/card-view']);
     }
+  }
+
+  getDetails(results) {
+
+    var details = [];
+    var i = 1;
+
+    for(let place of results) {
+      setTimeout(() => {
+        this.placeService.getDetails({placeId: place.place_id}, (res, status) => {
+          if(status === "OK"){
+            details.push(res)
+          } else {
+            console.log(status)
+          }
+        })
+      }, 275 * i)
+
+      i++;
+    }
+    return details;
+    
   }
 
 
