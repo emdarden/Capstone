@@ -9,8 +9,8 @@ import { LandingComponent } from './components/landing/landing.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {environment} from '../environments/environment';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { CardViewComponent } from './components/card-view/card-view.component';
 import { CardComponent } from './components/card/card.component';
+import { DisplayResultsWrapperComponent } from './components/display-results-wrapper/display-results-wrapper.component';
 export const googleAPIKey = environment.googleAPIKey;
 
 
@@ -21,8 +21,8 @@ export const googleAPIKey = environment.googleAPIKey;
     LandingComponent,
     SearchBarComponent,
     SearchResultsComponent,
-    CardViewComponent,
-    CardComponent
+    CardComponent,
+    DisplayResultsWrapperComponent
   ],
   imports: [
     BrowserModule,

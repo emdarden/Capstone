@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingComponent } from './components/landing/landing.component';
-import { CardViewComponent } from './components/card-view/card-view.component';
+import { DisplayResultsWrapperComponent } from './components/display-results-wrapper/display-results-wrapper.component';
 
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
-  { path: 'card-view', component: CardViewComponent}
+  { path: 'search/:query', component: DisplayResultsWrapperComponent}
 ];
 
 
