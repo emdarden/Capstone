@@ -1,7 +1,16 @@
 <div class="card">
     <img class="card-img" [src]='cardImageURL'>
     <div class="card-body">
-        <p class="card-name">{{ cardName }}</p>
-        <p class="card-description"></p>
+        <div class="header">
+            <p class="card-name">{{ cardName }}</p>
+            <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+                <i class="far fa-heart"></i>
+            </div>
+        </div>
+        <div class="rating-wrapper">
+            <p><i class="fas fa-star"></i> {{cardRating}}</p>
+            <p class="total-ratings">{{cardTotalRatings}} ratings</p>
+        </div>
     </div>
 </div>

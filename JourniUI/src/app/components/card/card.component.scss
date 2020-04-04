@@ -3,11 +3,15 @@
 .card {
   border-radius: .5rem;
   width: 225px;
-  height: 300px;
+  height: 240px;
   // border-left: 2px solid $journi-green;
+
+  &:hover {
+    cursor: pointer;
+  }
   
   
-  &-img {
+  .card-img {
     display: block;
     width: 100%;
     height: 150px;
@@ -15,24 +19,74 @@
     border-top-left-radius: .5rem; 
   }
   
-  &-body {
-    height: 140px;
+  .card-body {
+    height: 80px;
     background-color: #fff;
     border-bottom-right-radius: .5rem; 
     border-bottom-left-radius: .5rem; 
     padding: 10px 10px 0px 10px;
-  }
-  
-  &-name {
-    margin: 0px;
-    width: 150px;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.2;
-  }
-  
-  &-desscription {
-    margin: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      flex-grow: 1;
+      
+      .card-name{
+        margin: 0px;
+        width: 150px;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+
+      .heart-icon {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        margin-right: 15px;
+
+        &:hover {
+
+          .fas {
+            display: block;
+          }
+
+          .far {
+            display: none;
+          }
+        }
+
+        .fa-heart {
+          position: absolute;
+          width: fit-content;
+          height: fit-content;
+        }
+
+        .fas {
+          display: none;
+          color: #f8836b; 
+        }
+
+      }
+
+    }
+
+    .rating-wrapper {
+      display: flex;
+      font-weight: 300;
+      justify-content: space-between;
+      font-size: 13px;
+
+      .fa-star{
+        color: $journi-orange;
+      }
+
+      .total-ratings {
+        color: rgb(104, 104, 104);
+      }
+    }
   }
 }
   

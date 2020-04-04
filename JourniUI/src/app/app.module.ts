@@ -11,6 +11,7 @@ import {environment} from '../environments/environment';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { CardComponent } from './components/card/card.component';
 import { DisplayResultsWrapperComponent } from './components/display-results-wrapper/display-results-wrapper.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 export const googleAPIKey = environment.googleAPIKey;
 
 
@@ -21,7 +22,7 @@ export const googleAPIKey = environment.googleAPIKey;
     LandingComponent,
     SearchBarComponent,
     SearchResultsComponent,
-    CardComponent,
+    CardComponent, 
     DisplayResultsWrapperComponent
   ],
   imports: [
@@ -31,7 +32,8 @@ export const googleAPIKey = environment.googleAPIKey;
     AgmCoreModule.forRoot({
       apiKey: googleAPIKey,
       libraries: ["places"]
-    })
+    }),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
