@@ -1,3 +1,26 @@
-<div class="cards">
-    <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="card"></app-card>
+<div class="container">
+    <div class="header">
+        <img class="logo" src="../../../assets/imgs/journi_logo2.png">
+    </div>
+
+    <h1>Things to Do in {{query}}</h1>
+
+    <div class="filters">
+        <div>
+            <button>Distance <i class="fas fa-sort-down"></i></button>
+            <button>Type <i class="fas fa-sort-down"></i></button>
+            <button>Price <i class="fas fa-sort-down"></i></button>
+            <button>Ratings <i class="fas fa-sort-down"></i></button>
+        </div>
+
+        <div class="show-map">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Show Map</p>
+        </div>
+    </div>
+
+    <div class="cards">
+        <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="card"></app-card>
+    </div>
 </div>
+

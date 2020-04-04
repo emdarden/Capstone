@@ -1,12 +1,75 @@
 @import "../../../style/base";
 
-.cards {
+.container {
+    max-width: 1300px;
     display: flex;
-    flex-wrap: wrap;
-    background-color:rgb(241, 241, 241);
-}
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
 
-.card {
-    margin: 20px;
-    width: fit-content;
+    .header {
+
+        margin-bottom: 50px;
+
+        .logo {
+            width: 100px;
+            float: left;
+            margin-top: 20px;
+            margin-left: -7px;
+        }
+    }
+
+    h1 {
+        font-weight: $font-bold;
+    }
+
+    .filters {
+
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            border: 1px solid $journi-grey;
+            height: 35px;
+            width: 95px;
+            margin-right: 15px;
+            border-radius: 30px;
+            font-size: 15px;
+            outline: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .show-map {
+            display: flex;
+            height: fit-content;
+            margin-top: 5px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            p {
+                margin: 0 0 0 5px;
+            }
+        }
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        background-color:rgb(241, 241, 241);
+        max-width: 1300px;
+        padding-top: 25px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+    
+    .card {
+        margin: 15px;
+        width: fit-content;
+    }
 }

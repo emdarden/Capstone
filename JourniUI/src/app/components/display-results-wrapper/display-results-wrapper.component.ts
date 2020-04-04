@@ -18,13 +18,13 @@ export class DisplayResultsWrapperComponent implements OnInit {
 
   constructor( 
     private route: ActivatedRoute,
-    private router: Router,
     private service: SearchResultsService) { }
 
   ngOnInit(): void {
     
     this.searchResult$ = this.route.paramMap.subscribe((param) => {
-      this.request = {query: "things to do in " + param.get('query')}
+      this.query = param.get('query');
+      this.request = {query: "things to do in " + this.query}
       this.service.setSearchResults(this.request);
     })
 
