@@ -47,3 +47,5 @@ Thumbs.db
 
 #API Keys
 /src/environments/environment.ts
+
+../JourniData
