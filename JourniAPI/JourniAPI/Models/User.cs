@@ -20,6 +20,8 @@ namespace JourniAPI.Models
 
         public string Email { get; set; }
 
+        public string PasswordHash { get; set; }
+
         public List<Trip> Trips { get; set; }
 
         public User()
