@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -18,7 +17,9 @@ export class DisplayResultsWrapperComponent implements OnInit {
 
   constructor( 
     private route: ActivatedRoute,
-    private service: SearchResultsService) { }
+    private service: SearchResultsService) {
+      document.body.style.margin = "0 75px"
+     }
 
   ngOnInit(): void {
     

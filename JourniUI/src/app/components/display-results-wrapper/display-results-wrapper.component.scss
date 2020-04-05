@@ -10,6 +10,8 @@
     .header {
 
         margin-bottom: 50px;
+        display: flex;
+        justify-content: space-between;
 
         .logo {
             width: 100px;
@@ -17,6 +19,15 @@
             margin-top: 20px;
             margin-left: -7px;
         }
+
+        .nav {
+            margin-top: 40px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
     }
 
     h1 {

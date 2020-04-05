@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    document.body.style.margin = "0px"
+  }
 
   ngOnInit(): void {
   }
