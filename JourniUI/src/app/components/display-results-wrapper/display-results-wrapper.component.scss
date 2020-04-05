@@ -10,6 +10,12 @@
     .header {
 
         margin-bottom: 50px;
+        position: sticky;
+        top: 0;
+        height: 90px;
+        background: white;
+        z-index: 100;
+        box-shadow: 0 2px 2px -2px grey;
 
         .logo {
             width: 100px;
@@ -19,62 +25,83 @@
         }
     }
 
-    h1 {
-        font-weight: $font-bold;
-    }
-
-    .filters {
-
-        margin-bottom: 30px;
+    .wrapper {
         display: flex;
-        justify-content: space-between;
 
-        button {
-            border: 1px solid $journi-grey;
-            height: 35px;
-            width: 95px;
-            margin-right: 15px;
-            border-radius: 30px;
-            font-size: 15px;
-            outline: none;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        .show-map {
+        .body {
             display: flex;
-            height: fit-content;
-            margin-top: 5px;
+            flex-direction: column;
 
-            &:hover {
-                cursor: pointer;
+            h1 {
+                font-weight: $font-bold;
             }
-
-            p {
-                margin: 0 0 0 5px;
+        
+            .filters {
+        
+                margin-bottom: 30px;
+                display: flex;
+                justify-content: space-between;
+        
+                button {
+                    border: 1px solid $journi-grey;
+                    height: 35px;
+                    width: 95px;
+                    margin-right: 15px;
+                    border-radius: 30px;
+                    font-size: 15px;
+                    outline: none;
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+        
+                .show-map {
+                    display: flex;
+                    height: fit-content;
+                    margin-top: 5px;
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+        
+                    p {
+                        margin: 0 0 0 5px;
+                    }
+                }
+        
+                .filters-search {
+                    
+                    display: flex;
+                }
             }
-        }
-
-        .filters-search {
-            
-            display: flex;
-        }
-    }
-
-    .cards {
-        display: flex;
-        flex-wrap: wrap;
-        background-color:rgb(241, 241, 241);
-        max-width: 1300px;
-        padding-top: 25px;
-        margin: 0 auto;
-        justify-content: center;
-    }
+        
+            .cards {
+                display: flex;
+                flex-wrap: wrap;
+                background-color:rgb(241, 241, 241);
+                max-width: 1300px;
+                padding-top: 25px;
+                margin: 0 auto;
+                justify-content: center;
     
-    .card {
-        margin: 15px;
-        width: fit-content;
+                .card {
+                    margin: 15px;
+                    width: fit-content;
+                }
+
+            }
+
+        }
+
+        .map {
+            height: 800px;
+            width: 600px;
+            position: sticky;
+            top: 90px;
+        }
     }
+
+    
+    
 }

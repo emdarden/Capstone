@@ -16,6 +16,8 @@ export class DisplayResultsWrapperComponent implements OnInit {
   query: string;
   request;
 
+  showMap = true;
+
   constructor( 
     private route: ActivatedRoute,
     private service: SearchResultsService) { }
