@@ -1,0 +1,3 @@
+
+<a (click)="auth.login()" *ngIf="!auth.loggedIn">Log In</a>
+<i class="fas fa-user-circle" (click)="auth.logout()" *ngIf="auth.loggedIn"></i>
