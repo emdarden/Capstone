@@ -11,7 +11,7 @@ import { MapsService } from 'src/app/services/maps.service';
   templateUrl: './display-results-wrapper.component.html',
   styleUrls: ['./display-results-wrapper.component.scss']
 })
-export class DisplayResultsWrapperComponent implements OnInit {
+export class DisplayResultsWrapperComponent implements OnInit{
   searchResult$: Subscription;
   searchResults;
   mapCenter$: Subscription;
@@ -30,11 +30,11 @@ export class DisplayResultsWrapperComponent implements OnInit {
     private service: SearchResultsService,
     private mapsService: MapsService,
     private mapsAPILoader: MapsAPILoader) { 
-     this.mapsAPILoader.load().then(() => {
-       this.map = new google.maps.Map(document.getElementById('map'), {zoom: 12, center: {lat: 0, lng: 0}})
-       console.log(this.map)
-
-     })
+      this.mapsAPILoader.load().then(() => {
+        this.map = new google.maps.Map(document.getElementById('map'), {zoom: 12, center: {lat: 0, lng: 0}})
+        console.log(this.map)
+  
+      })
     }
 
   ngOnInit(): void {
