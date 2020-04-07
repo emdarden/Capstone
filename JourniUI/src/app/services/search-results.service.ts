@@ -10,6 +10,7 @@ import * as data from '../../assets/sampledata.json'
 export class SearchResultsService {
 
   private searchResult$ = new ReplaySubject<any>(1);
+  private mapCenter$ = new ReplaySubject<any>(1);
   private placeService;
   servicePromise: Promise<any>;
   sampleData: any = (data as any).default;
@@ -24,8 +25,12 @@ export class SearchResultsService {
     return this.searchResult$.asObservable();
   }
 
+  public getMapCenter(): Observable<any>{
+    return this.mapCenter$.asObservable();
+  }
+
   public setSearchResults(request): Observable<any>{
-    // var resultDetails;
+    //  var resultDetails;
 
    
     // this.servicePromise.then(() => { 
@@ -49,8 +54,23 @@ export class SearchResultsService {
     // })
 
     // return resultDetails;
-     this.searchResult$.next(this.sampleData);
+    this.searchResult$.next(this.sampleData);
     return this.sampleData
+  }
+
+  public setMapCenter(city) {
+    var request = {query: city, fields:['geometry']}
+    var center = {lat: 0, lng: 0};
+
+    this.servicePromise.then(() => {
+      this.placeService.textSearch(request, (results, status) => {
+        if(status === 'OK'){
+          center.lat = results[0].geometry.location.lat();
+          center.lng = results[0].geometry.location.lng();
+          this.mapCenter$.next(center)
+        }
+      })
+    })
   }
 
   getDetails(results) {

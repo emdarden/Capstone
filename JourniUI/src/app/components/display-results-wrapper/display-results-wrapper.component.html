@@ -25,7 +25,10 @@
                 <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="card"></app-card>
             </div>
         </div>
-        <agm-map class="map" *ngIf="showMap"></agm-map>
+
+        <div class="map-wrapper">
+            <div id="map"></div>
+        </div>
 
     </div>
 

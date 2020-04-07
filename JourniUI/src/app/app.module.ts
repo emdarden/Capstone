@@ -12,6 +12,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { CardComponent } from './components/card/card.component';
 import { DisplayResultsWrapperComponent } from './components/display-results-wrapper/display-results-wrapper.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GoogleMapsModule } from '@angular/google-maps'
 export const googleAPIKey = environment.googleAPIKey;
 
 
@@ -33,7 +34,8 @@ export const googleAPIKey = environment.googleAPIKey;
       apiKey: googleAPIKey,
       libraries: ["places"]
     }),
-    FontAwesomeModule
+    FontAwesomeModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

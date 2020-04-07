@@ -8,8 +8,6 @@
     margin: 0 auto;
 
     .header {
-
-        margin-bottom: 50px;
         position: sticky;
         top: 0;
         height: 90px;
@@ -93,11 +91,11 @@
             }
 
         }
-
-        .map {
+            
+        #map {
             height: 800px;
             width: 600px;
-            position: sticky;
+            position: sticky !important;
             top: 90px;
         }
     }

@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapsService {
 
-  constructor(private http: HttpClient) { }
+  private map$ = new ReplaySubject<any>(1);
 
+  constructor() { }
 
+  getMap(){
+    return this.map$.asObservable();
+  }
+
+  setMap(map){
+    this.map$.next(map);
+  }
 }
