@@ -15,7 +15,7 @@
                     <button>Ratings <i class="fas fa-sort-down"></i></button>
                 </div>
 
-                <div class="show-map" *ngIf="!showMap">
+                <div class="show-map" *ngIf="!showMapBool" (click)="showMap()">
                     <i class="fas fa-map-marker-alt"></i>
                     <p>Show Map</p>
                 </div>
@@ -27,7 +27,9 @@
         </div>
 
         <div class="map-wrapper">
-            <div id="map"></div>
+            <i class="fas fa-window-close" *ngIf="showMapBool" (click)="hideMap()"></i>
+            <div id="map" [class.show-map]="showMapBool">
+            </div>
         </div>
 
     </div>

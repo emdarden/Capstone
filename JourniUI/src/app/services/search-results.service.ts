@@ -25,10 +25,6 @@ export class SearchResultsService {
     return this.searchResult$.asObservable();
   }
 
-  public getMapCenter(): Observable<any>{
-    return this.mapCenter$.asObservable();
-  }
-
   public setSearchResults(request): Observable<any>{
     //  var resultDetails;
 
@@ -56,21 +52,6 @@ export class SearchResultsService {
     // return resultDetails;
     this.searchResult$.next(this.sampleData);
     return this.sampleData
-  }
-
-  public setMapCenter(city) {
-    var request = {query: city, fields:['geometry']}
-    var center = {lat: 0, lng: 0};
-
-    this.servicePromise.then(() => {
-      this.placeService.textSearch(request, (results, status) => {
-        if(status === 'OK'){
-          center.lat = results[0].geometry.location.lat();
-          center.lng = results[0].geometry.location.lng();
-          this.mapCenter$.next(center)
-        }
-      })
-    })
   }
 
   getDetails(results) {

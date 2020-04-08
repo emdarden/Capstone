@@ -14,49 +14,50 @@ import { MapsService } from 'src/app/services/maps.service';
 export class DisplayResultsWrapperComponent implements OnInit{
   searchResult$: Subscription;
   searchResults;
-  mapCenter$: Subscription;
-  mapCenter = {lat: 48.856614, lng: 2.3522219};
-
   searchSubscription: Subscription;
   query: string;
   request;
-  map;
   placeService
 
-  showMap = true;
+  showMapBool = false;
 
   constructor( 
     private route: ActivatedRoute,
     private service: SearchResultsService,
-    private mapsService: MapsService,
-    private mapsAPILoader: MapsAPILoader) { 
-      this.mapsAPILoader.load().then(() => {
-        this.map = new google.maps.Map(document.getElementById('map'), {zoom: 12, center: {lat: 0, lng: 0}})
-        console.log(this.map)
-  
-      })
+    private mapsService: MapsService) { 
     }
 
   ngOnInit(): void {
+
+    this.mapsService.initMap(document.getElementById('map'));
+
+    this.mapsService.getMapStatus().subscribe(res => {
+      if(res){
+        this.showMapBool = true;
+        this.mapsService.refreshMap();
+      } else {
+        this.showMapBool = false;
+      }
+    })
+    
     
     this.searchResult$ = this.route.paramMap.subscribe((param) => {
       this.query = param.get('query');
       this.request = {query: "things to do in " + this.query}
       this.service.setSearchResults(this.request);
-      this.service.setMapCenter(this.query);
     })
 
     this.searchSubscription = this.service.getSearchResults().subscribe(results => {
       this.searchResults = results;
     })
+  }
 
-    this.mapCenter$ = this.service.getMapCenter().subscribe(results => {
-      this.mapCenter = results;
-      console.log(this.mapCenter);
-      this.map.setCenter(this.mapCenter)
-      this.mapsService.setMap(this.map)
-    })
+  showMap(){
+    this.mapsService.setMapStatus(true);
+  }
 
+  hideMap(){
+    this.mapsService.setMapStatus(false);
   }
 
 }

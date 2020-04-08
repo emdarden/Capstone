@@ -21,10 +21,16 @@ export class CardComponent implements OnInit {
   marker
 
   constructor(private mapsService: MapsService, private mapsAPILoader: MapsAPILoader) { 
-    this.markerPromise = this.mapsAPILoader.load();
+  
   }
 
   ngOnInit(): void {
+    this.mapsService.getMapStatus().subscribe(res => {
+      if (res) {
+        this.mapsService.addMarker(this.cardItem);
+      }
+    })
+
     this.cardName = this.cardItem.result.name; //remove ".result" in prod
     this.cardImageURL = this.cardItem.result.photos[0].url; //change url to getUrl() in prod
     this.cardRating = this.cardItem.result.rating;
@@ -35,20 +41,8 @@ export class CardComponent implements OnInit {
     // this.cardRating = this.cardItem.rating;
     // this.cardTotalRatings = this.cardItem.user_ratings_total;
     
-    this.mapsService.getMap().subscribe(map => {
-      this.map = map;
-      this.addMarker();
-    })
   }
 
-addMarker(){
-  this.markerPromise.then(() => {
-    // this.marker = new google.maps.Marker({position: { lat: this.cardItem.geometry.location.lat(), lng: this.cardItem.geometry.location.lng()} , map: this.map})
-    this.marker = new google.maps.Marker({position: this.cardItem.result.geometry.location, map: this.map})
-    console.log(this.marker)
-  })
-
 }
 
 
-}
