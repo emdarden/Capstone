@@ -4,28 +4,36 @@
         <app-nav class="nav"></app-nav>
     </div>
 
-    <h1>Things to Do in {{query}}</h1>
+    <div class="wrapper">
+        <div class="body">
+            <h1>Things to Do in {{query}}</h1>
 
-    <div class="filters">
-        <div class="filters-search">
-            <button>Distance <i class="fas fa-sort-down"></i></button>
-            <button>Type <i class="fas fa-sort-down"></i></button>
-            <button>Price <i class="fas fa-sort-down"></i></button>
-            <button>Ratings <i class="fas fa-sort-down"></i></button>
+            <div class="filters">
+                <div class="filters-search">
+                    <button>Distance <i class="fas fa-sort-down"></i></button>
+                    <button>Type <i class="fas fa-sort-down"></i></button>
+                    <button>Price <i class="fas fa-sort-down"></i></button>
+                    <button>Ratings <i class="fas fa-sort-down"></i></button>
+                </div>
 
-            <div class="search">
-                <i class="fas fa-search"></i>
+                <div class="show-map" *ngIf="!showMapBool" (click)="showMap()">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Show Map</p>
+                </div>
+            </div>
+
+            <div class="cards">
+                <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="card"></app-card>
             </div>
         </div>
 
-        <div class="show-map">
-            <i class="fas fa-map-marker-alt"></i>
-            <p>Show Map</p>
+        <div class="map-wrapper">
+            <i class="fas fa-window-close" *ngIf="showMapBool" (click)="hideMap()"></i>
+            <div id="map" [class.show-map]="showMapBool">
+            </div>
         </div>
+
     </div>
 
-    <div class="cards">
-        <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="card"></app-card>
-    </div>
 </div>
 
