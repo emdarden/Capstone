@@ -1,9 +1,9 @@
-<div class="card">
-    <img class="card-img" [src]='cardImageURL'>
+<div class="place-card" (click)="showDetails()">
+    <img class="card-image" [src]='cardImageURL'>
     <div class="card-body">
-        <div class="header">
+        <div class="header-a">
             <p class="card-name">{{ cardName }}</p>
-            <div class="heart-icon">
+            <div class="heart-icon" (click)="savePlace()">
                 <i class="fas fa-heart"></i>
                 <i class="far fa-heart"></i>
             </div>

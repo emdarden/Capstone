@@ -30,7 +30,7 @@ export class MapsService {
   }
 
   addMarker(place){
-    var position = place.result.geometry.location
+    var position = place.geometry.location
     // var position = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
 
     this.mapPromise.then(() => {
@@ -54,7 +54,16 @@ export class MapsService {
     setTimeout(() => {
       google.maps.event.trigger(this.map, 'resize');
       this.map.fitBounds(this.latlngBounds);
-    }, 250);
+    }, 300);
+  }
+
+  highlightMarker(position){
+    setTimeout(() => {
+      google.maps.event.trigger(this.map, 'resize');
+      this.map.setZoom(14);
+      this.map.panTo(position)
+    }, 500);
+
   }
 
 }

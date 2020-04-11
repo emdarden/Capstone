@@ -6,7 +6,8 @@ import { DisplayResultsWrapperComponent } from './components/display-results-wra
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
-  { path: 'search/:query', component: DisplayResultsWrapperComponent}
+  { path: 'search', component: DisplayResultsWrapperComponent},
+  // { path: 'search/:query', component: DisplayResultsWrapperComponent},
 ];
 
 

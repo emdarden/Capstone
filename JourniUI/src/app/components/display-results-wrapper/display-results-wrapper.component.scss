@@ -1,6 +1,6 @@
 @import "../../../style/base";
 
-.container {
+.container-a {
     max-width: 1300px;
     display: flex;
     flex-direction: column;
@@ -9,15 +9,14 @@
 
     .header {
 
-        margin-bottom: 50px;
         display: flex;
         justify-content: space-between;
         position: sticky;
         top: 0;
-        height: 90px;
         background: white;
         z-index: 100;
         box-shadow: 0 2px 2px -2px grey;
+        padding-bottom: 20px;
 
         .logo {
             width: 100px;
@@ -41,71 +40,88 @@
         justify-content: space-between;
 
         .body {
-            display: flex;
-            flex-direction: column;
+            width: 100%;
 
-            h1 {
-                font-weight: $font-bold;
-            }
-        
-            .filters {
-        
-                margin-bottom: 30px;
+            .main-results {
+
+                &.showDetail {
+                    display: none;
+                }
+
                 display: flex;
-                justify-content: space-between;
-        
-                button {
-                    border: 1px solid $journi-grey;
-                    height: 35px;
-                    width: 95px;
-                    margin-right: 15px;
-                    border-radius: 30px;
-                    font-size: 15px;
-                    outline: none;
-        
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
-        
-                .show-map {
-                    display: flex;
-                    height: fit-content;
-                    margin-top: 5px;
-        
-                    &:hover {
-                        cursor: pointer;
-                    }
-        
-                    p {
-                        margin: 0 0 0 5px;
-                    }
-                }
-        
-                .filters-search {
-                    
-                    display: flex;
-                }
-            }
-        
-            .cards {
-                display: flex;
-                flex-wrap: wrap;
-                background-color:rgb(241, 241, 241);
-                max-width: 1300px;
-                padding-top: 25px;
-                margin: 0 auto;
-                justify-content: center;
+                flex-direction: column;
     
-                .card {
-                    margin: 15px;
-                    width: fit-content;
+                h1 {
+                    font-weight: $font-bold;
+                    margin: 15px 0px;
                 }
+            
+                .filters {
+            
+                    margin-bottom: 30px;
+                    display: flex;
+                    justify-content: space-between;
+            
+                    button {
+                        border: 1px solid $journi-grey;
+                        height: 35px;
+                        width: 95px;
+                        margin-right: 15px;
+                        border-radius: 30px;
+                        font-size: 15px;
+                        outline: none;
+            
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+            
+                    .show-map {
+                        display: flex;
+                        height: fit-content;
+                        margin-top: 5px;
+            
+                        &:hover {
+                            cursor: pointer;
+                        }
+            
+                        p {
+                            margin: 0 0 0 5px;
+                        }
+                    }
+            
+                    .filters-search {
+                        
+                        display: flex;
+                    }
+                }
+            
+                .cards-a {
+                    display: flex;
+                    flex-wrap: wrap;
+                    max-width: 1300px;
+                    padding-top: 25px;
+                    margin: 0 auto;
+                    justify-content: space-between;
 
+                    &.show-map {
+                        justify-content: center;
+                    }
+        
+                    .place-card {
+                        margin: 15px;
+                        width: fit-content;
+                        border: none;
+                    }
+    
+                }
+    
+    
             }
-
 
         }
+
+        
 
         .map-wrapper {
 
@@ -131,7 +147,7 @@
                 top: 90px;
 
                 &.show-map {
-                    width: 600px;
+                    width: 800px;
                 }
             }
 

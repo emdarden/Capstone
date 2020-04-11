@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-a">
     <div class="header">
         <img class="logo" src="../../../assets/imgs/journi_logo2.png">
         <app-nav class="nav"></app-nav>
@@ -6,25 +6,31 @@
 
     <div class="wrapper">
         <div class="body">
-            <h1>Things to Do in {{query}}</h1>
+            <div class="main-results"  [class.showDetail]="detailOpen">
+                <h1>Traveling to {{query}}</h1>
 
-            <div class="filters">
-                <div class="filters-search">
-                    <button>Distance <i class="fas fa-sort-down"></i></button>
-                    <button>Type <i class="fas fa-sort-down"></i></button>
-                    <button>Price <i class="fas fa-sort-down"></i></button>
-                    <button>Ratings <i class="fas fa-sort-down"></i></button>
+                <div class="filters">
+                    <div class="filters-search">
+                        <button>Distance <i class="fas fa-sort-down"></i></button>
+                        <button>Type <i class="fas fa-sort-down"></i></button>
+                        <button>Price <i class="fas fa-sort-down"></i></button>
+                        <button>Ratings <i class="fas fa-sort-down"></i></button>
+                    </div>
+
+                    <div class="show-map" *ngIf="!showMapBool" (click)="showMap()">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Show Map</p>
+                    </div>
                 </div>
 
-                <div class="show-map" *ngIf="!showMapBool" (click)="showMap()">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Show Map</p>
+                <div class="cards-a" [class.show-map]="showMapBool">
+                    <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card"></app-card>
                 </div>
+
             </div>
 
-            <div class="cards">
-                <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="card"></app-card>
-            </div>
+            <app-place-detail *ngIf="detailOpen && query" [query]="query"></app-place-detail>
+            
         </div>
 
         <div class="map-wrapper">

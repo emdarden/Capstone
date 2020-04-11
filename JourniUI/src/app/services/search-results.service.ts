@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
+import { ReplaySubject, Observable, Subject } from 'rxjs';
 import { MapsAPILoader } from '@agm/core';
 import * as data from '../../assets/sampledata.json'
 
@@ -10,8 +10,9 @@ import * as data from '../../assets/sampledata.json'
 export class SearchResultsService {
 
   private searchResult$ = new ReplaySubject<any>(1);
-  private mapCenter$ = new ReplaySubject<any>(1);
   private placeService;
+  private selectedPlace$ = new ReplaySubject;
+  private isDetailOpen$ = new Subject<boolean>();
   servicePromise: Promise<any>;
   sampleData: any = (data as any).default;
 
@@ -71,5 +72,21 @@ export class SearchResultsService {
       i++;
     }
     return details;
+  }
+
+  getSelectedPlace(){
+    return this.selectedPlace$.asObservable();
+  }
+
+  setSelectedPlace(place){
+    this.selectedPlace$.next(place);
+  }
+
+  setIsDetailOpen(bool: boolean){
+    this.isDetailOpen$.next(bool);
+  }
+
+  getIsDetailOpen(){
+    return this.isDetailOpen$.asObservable();
   }
 }

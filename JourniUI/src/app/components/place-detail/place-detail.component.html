@@ -1,0 +1,54 @@
+<div class="header">
+    <i class="fas fa-chevron-left" (click)="hideDetails()"></i>
+    <p *ngIf="query">Traveling to {{ query }}</p>
+</div>
+
+<div class="carousel">
+    <ngb-carousel style="height: 100%">
+        <ng-template ngbSlide *ngFor="let image of images">
+            <div class="picsum-img-wrapper">
+                <img class="carousel-img" [src]="image">
+            </div>
+        </ng-template>
+    </ngb-carousel>
+</div>
+
+<div class="sub-header">
+    <h2>{{ place.name }}</h2>
+    <div class="heart-icon" (click)="savePlace()">
+        <i class="fas fa-heart"></i>
+        <i class="far fa-heart"></i>
+    </div>
+</div>
+
+
+
+<div class="details">
+    <div class="address">
+        <i class="fas fa-building"></i>
+        <p>{{ place.formatted_address }}</p>
+    </div>
+    
+    <div class="phone-number">
+        <i class="fas fa-phone-alt"></i>
+        <p>{{ place.international_phone_number || place.formatted_phone_number }}</p>
+    </div>
+
+    <div class="website">
+        <i class="fas fa-globe-americas"></i>
+        <a target="_blank" href="{{place.website}}">Learn More</a>
+    </div>
+</div>
+
+<div class="reviews-wrapper">
+    <button (click)="isCollapsed = !isCollapsed">Reviews <i class="fas fa-sort-down"></i></button>
+    <div class="reviews" *ngFor="let review of place.reviews" [ngbCollapse]="isCollapsed">
+        <div class="review">
+            <div class="text">
+                "{{ review.text }}"
+            </div>
+            <p class="author">- {{ review.author_name }}</p>
+        </div>
+    </div>
+</div>
+ 

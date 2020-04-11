@@ -4,6 +4,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { MapsAPILoader } from '@agm/core';
 import { MapsService } from 'src/app/services/maps.service';
+import { Location } from '@angular/common';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-display-results-wrapper',
@@ -19,11 +21,14 @@ export class DisplayResultsWrapperComponent implements OnInit{
   placeService
 
   showMapBool = false;
+  detailOpen= false;
 
   constructor( 
     private route: ActivatedRoute,
     private service: SearchResultsService,
-    private mapsService: MapsService) {
+    private mapsService: MapsService,
+    private location: Location,
+    private router: Router) {
       document.body.style.margin = "0 75px"
      }
 
@@ -33,23 +38,24 @@ export class DisplayResultsWrapperComponent implements OnInit{
 
     this.mapsService.getMapStatus().subscribe(res => {
       if(res){
-        this.showMapBool = true;
         this.mapsService.refreshMap();
+        this.showMapBool = true;
       } else {
         this.showMapBool = false;
       }
     })
     
-    
-    this.searchResult$ = this.route.paramMap.subscribe((param) => {
-      this.query = param.get('query');
-      this.request = {query: "things to do in " + this.query}
+    this.route.queryParamMap.pipe(distinctUntilChanged((a,b) => a['params'].query === b['params'].query)).subscribe((ParamsAsMap) => {
+      this.query = ParamsAsMap['params'].query;
+      this.request = {query: "things to do in " + this.query};
       this.service.setSearchResults(this.request);
     })
-
+    
     this.searchSubscription = this.service.getSearchResults().subscribe(results => {
       this.searchResults = results;
     })
+
+    this.service.getIsDetailOpen().subscribe(bool => this.detailOpen = bool)
   }
 
   showMap(){
@@ -57,7 +63,11 @@ export class DisplayResultsWrapperComponent implements OnInit{
   }
 
   hideMap(){
+    this.router.navigate(['/search'], { queryParams: {query: this.query}});
     this.mapsService.setMapStatus(false);
+    if(this.detailOpen){
+      this.service.setIsDetailOpen(false);
+    }
   }
 
 }
