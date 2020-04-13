@@ -1,3 +1,11 @@
 
-<a (click)="auth.login()" *ngIf="!auth.loggedIn">Log In</a>
-<i class="fas fa-user-circle" (click)="auth.logout()" *ngIf="auth.loggedIn"></i>
+<a (click)="auth.login()" *ngIf="!auth.isAuthenticated()">Log In</a>
+<!-- <i class="fas fa-user-circle" (click)="auth.logout()" *ngIf="auth.loggedIn"></i> -->
+<div ngbDropdown *ngIf="auth.isAuthenticated()">
+    <i class="fas fa-user-circle" ngbDropdownToggle></i>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>My Trips</button>
+        <button ngbDropdownItem (click)="showProfile()">Profile</button>
+        <button ngbDropdownItem (click)="auth.logout()">Log Out</button>
+      </div>
+</div>

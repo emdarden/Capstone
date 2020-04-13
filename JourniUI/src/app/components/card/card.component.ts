@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 import { EventEmitter } from 'protractor';
 import { SearchResultsService } from 'src/app/services/search-results.service';
+import { AuthLockService } from 'src/app/services/auth-lock.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class CardComponent implements OnInit {
   constructor(private mapsService: MapsService, 
     private route: ActivatedRoute, 
     private router: Router, 
-    private searchService: SearchResultsService) { 
+    private searchService: SearchResultsService,
+    private auth: AuthLockService) { 
   
   }
 
@@ -58,7 +60,11 @@ export class CardComponent implements OnInit {
 
   savePlace(){
     event.stopPropagation();
-    console.log("place saved")
+    if(!this.auth.isAuthenticated()){
+      this.auth.login();
+    } else {
+      //save place
+    }
   }
 
 }

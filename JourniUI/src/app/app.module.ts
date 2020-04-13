@@ -16,6 +16,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PlaceDetailComponent } from './components/place-detail/place-detail.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const googleAPIKey = environment.googleAPIKey;
 
@@ -28,7 +29,10 @@ export const googleAPIKey = environment.googleAPIKey;
     SearchBarComponent,
     SearchResultsComponent,
     CardComponent, 
-    DisplayResultsWrapperComponent, NavComponent, PlaceDetailComponent
+    DisplayResultsWrapperComponent, 
+    NavComponent, 
+    PlaceDetailComponent, 
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

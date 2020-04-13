@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { AuthLockService } from 'src/app/services/auth-lock.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,9 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthLockService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  showProfile() {
+    this.router.navigate(['/profile']);
   }
 
 }
