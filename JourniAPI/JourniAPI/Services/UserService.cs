@@ -17,42 +17,53 @@ namespace JourniAPI.Services
             _users = database.GetCollection<User>(settings.UsersCollectionName);
         }
 
+        //public User Login(string email, string password)
+        //{
+        //    User user = _users.Find(user => user.Email == email).FirstOrDefault();
+
+        //    if(user != null)
+        //    {
+        //        BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
+        //    }
+
+        //}
+
         public List<User> Get() => _users.Find(user => true).ToList();
 
-        public User Get(string id) => _users.Find(user => user.Id == id).FirstOrDefault();
+        public User Get(string id) => _users.Find(user => user.User_ID == id).FirstOrDefault();
 
-        //public List<Trip> GetTrips(string id) => this.Get(id).Trips;
+        public List<Trip> GetTrips(string id) => this.Get(id).Trips;
 
 
-        public User Create(User user)
-        {
-            _users.InsertOne(user);
-            return user;
-        }
+        //public User Create(User user)
+        //{
+        //    _users.InsertOne(user);
+        //    return user;
+        //}
 
-        public void AddTrip(string id, Trip trip)
-        {
-            User user = this.Get(id);
+        //public void AddTrip(string id, Trip trip)
+        //{
+        //    User user = this.Get(id);
 
-            List<Trip> UserTrips = user.Trips;
+        //    List<Trip> UserTrips = user.Trips;
 
-            UserTrips.Add(trip);
+        //    UserTrips.Add(trip);
 
-            var filter = Builders<User>.Filter.Eq("Id", user.Id);
-            var update = Builders<User>.Update.Set("Trips", UserTrips);
+        //    var filter = Builders<User>.Filter.Eq("Id", user.Id);
+        //    var update = Builders<User>.Update.Set("Trips", UserTrips);
 
-            _users.UpdateOne(filter, update);
+        //    _users.UpdateOne(filter, update);
 
-        }
+        //}
 
-        public void RemoveTrip(string userId, string tripId)
-        {
+        //public void RemoveTrip(string userId, string tripId)
+        //{
 
-        }
+        //}
 
-        public void Update(string id, User userIn) => _users.ReplaceOne(user => user.Id == id, userIn);
+        //public void Update(string id, User userIn) => _users.ReplaceOne(user => user.Id == id, userIn);
       
 
-        public void Remove(string id) => _users.DeleteOne(user => user.Id == id);
+        //public void Remove(string id) => _users.DeleteOne(user => user.Id == id);
     }
 }

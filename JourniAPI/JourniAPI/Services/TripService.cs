@@ -39,7 +39,7 @@ namespace JourniAPI.Services
 
         }
 
-        public void RemoveTrip(string id) => _users.DeleteOne(user => user.Id == id);
+        //public void RemoveTrip(string id) => _users.DeleteOne(user => user.Id == id);
 
     }
 }
