@@ -28,19 +28,19 @@ namespace JourniAPI.Controllers
             return user == null ? NotFound() : (ActionResult<User>)user;
         }
 
-        [HttpGet("{id}/trips")]
-        public ActionResult<List<Trip>> GetTrips(string id)
-        {
-            var user = _userService.Get(id);
+        //[HttpGet("{id}/trips")]
+        //public ActionResult<List<Trip>> GetTrips(string id)
+        //{
+        //    var user = _userService.Get(id);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return user.Trips;
+        //    return user.Trips;
 
-        }
+        //}
 
         //[HttpPost]
         //public ActionResult<User> Create(User user)

@@ -28,6 +28,13 @@ namespace JourniAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("Cors", builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }));
             services.Configure<JourniDatabaseSettings>(
                 Configuration.GetSection(nameof(JourniDatabaseSettings)));
 
@@ -35,6 +42,7 @@ namespace JourniAPI
                 sp.GetRequiredService<IOptions<JourniDatabaseSettings>>().Value);
 
             services.AddSingleton<UserService>();
+            services.AddSingleton<TripService>();
 
             services.AddControllers().AddNewtonsoftJson(options => options.UseMemberCasing());
         }
@@ -42,6 +50,7 @@ namespace JourniAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("Cors");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
