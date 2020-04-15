@@ -17,7 +17,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CardComponent implements OnInit {
   @Input() cardItem;
-
+  @Input() showMap;
+  
   cardName: string;
   cardImageURL: string;
   cardRating: number;

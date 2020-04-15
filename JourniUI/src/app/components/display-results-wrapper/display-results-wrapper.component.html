@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="cards-a" [class.show-map]="showMapBool">
-                    <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card"></app-card>
+                    <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card" [showMap]="showMapBool"></app-card>
                     <!-- <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="place-card"></app-card> -->
                 </div>
 

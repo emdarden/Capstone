@@ -1,4 +1,4 @@
-<div class="place-card" (click)="showDetails()">
+<div class="place-card" (click)="showDetails()" [class.show-map]="showMap">
     <img class="card-image" [src]='cardImageURL'>
     <div class="card-body">
         <div class="header-a">

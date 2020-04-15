@@ -95,4 +95,35 @@
       }
     }
   }
+
+  &.show-map {
+    display: flex;
+    width: 450px;
+    height: 150px;
+
+    .card-image {
+      width: 225px;
+      border-bottom-left-radius: .3rem; 
+      border-top-left-radius: .3rem; 
+      border-top-right-radius: 0;
+
+    }
+
+    .card-body {
+      height: 150px;
+      border-bottom-right-radius: .3rem; 
+      border-top-right-radius: .3rem; 
+      padding: 10px;
+
+      .header-a {
+        .card-name{
+          font-size: 1.2rem;
+        }
+      }
+
+      .rating-wrapper {
+        font-size: 15px;
+      }
+    }
+  }
 }
