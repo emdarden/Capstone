@@ -6,6 +6,8 @@ import {Location} from '@angular/common';
 import { EventEmitter } from 'protractor';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { AuthLockService } from 'src/app/services/auth-lock.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -22,12 +24,14 @@ export class CardComponent implements OnInit {
   cardTotalRatings: number;
   map;
   query;
+  userId;
 
   constructor(private mapsService: MapsService, 
     private route: ActivatedRoute, 
     private router: Router, 
     private searchService: SearchResultsService,
-    private auth: AuthLockService) { 
+    private auth: AuthService,
+    private api: ApiService) { 
   
   }
 
@@ -60,9 +64,9 @@ export class CardComponent implements OnInit {
 
   savePlace(){
     event.stopPropagation();
-    if(!this.auth.isAuthenticated()){
+    if(!this.auth.loggedIn){
       this.auth.login();
-    } else {
+    } else {      
       //save place
     }
   }

@@ -27,7 +27,7 @@ export class SearchResultsService {
   }
 
   public setSearchResults(request): Observable<any>{
-    //  var resultDetails;
+     var resultDetails;
 
    
     // this.servicePromise.then(() => { 

@@ -20,20 +20,15 @@ namespace JourniAPI.Controllers
         [HttpGet]
         public ActionResult<List<User>> Get() => _userService.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetUser")]
-        public ActionResult<User> Get(string id)
+        [HttpGet("{id}")]
+        public ActionResult<User> Get([FromRoute] string id)
         {
             var user = _userService.Get(id);
 
-            if(user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
+            return user == null ? NotFound() : (ActionResult<User>)user;
         }
 
-        [HttpGet]
+        [HttpGet("{id}/trips")]
         public ActionResult<List<Trip>> GetTrips(string id)
         {
             var user = _userService.Get(id);
@@ -47,59 +42,59 @@ namespace JourniAPI.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult<User> Create(User user)
-        {
-            _userService.Create(user);
+        //[HttpPost]
+        //public ActionResult<User> Create(User user)
+        //{
+        //    _userService.Create(user);
 
-            return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
-        }
+        //    return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
+        //}
 
-        public IActionResult AddTrip(string id, Trip trip)
-        {
-            var user = _userService.Get(id);
+        //public IActionResult AddTrip(string id, Trip trip)
+        //{
+        //    var user = _userService.Get(id);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _userService.AddTrip(id, trip);
+        //    _userService.AddTrip(id, trip);
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, User userIn)
-        {
-            var user = _userService.Get(id);
+        //[HttpPut("{id:length(24)}")]
+        //public IActionResult Update(string id, User userIn)
+        //{
+        //    var user = _userService.Get(id);
 
-            if(user == null)
-            {
-                return NotFound();
-            }
+        //    if(user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _userService.Update(id, userIn);
+        //    _userService.Update(id, userIn);
 
-            return NoContent();
+        //    return NoContent();
 
-        }
+        //}
 
-        [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string id)
-        {
-            var user = _userService.Get(id);
+        //[HttpDelete("{id:length(24)}")]
+        //public IActionResult Delete(string id)
+        //{
+        //    var user = _userService.Get(id);
 
-            if(user == null)
-            {
-                return NotFound();
-            }
+        //    if(user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _userService.Remove(user.Id);
+        //    _userService.Remove(user.Id);
 
-            return NoContent();
+        //    return NoContent();
 
 
-        }
+        //}
     }
 }

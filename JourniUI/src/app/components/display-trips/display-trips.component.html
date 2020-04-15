@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<div class="container-a">
+    <h1>My Trips</h1>
+
+    <div class="trips">
+        <div class="card-a create-trip">
+            <i class="fas fa-plus-circle"></i>
+            <p>Create a Trip</p>
+        </div>
+        <div class="card-a" *ngFor="let trip of trips" [style.background-image]="'url(' + trip.Img + ')'">
+            <p class="trip-name">{{trip.Name | uppercase}}</p>
+        </div>
+    </div>
+</div>

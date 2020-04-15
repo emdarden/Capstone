@@ -3,6 +3,7 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
 import { Router } from '@angular/router';
 import { MapsService } from 'src/app/services/maps.service';
 import { AuthLockService } from 'src/app/services/auth-lock.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-place-detail',
@@ -23,7 +24,7 @@ export class PlaceDetailComponent implements OnInit {
     private searchService: SearchResultsService, 
     private router: Router, 
     private mapsService: MapsService, 
-    private auth: AuthLockService) { }
+    private auth: AuthService) { }
 
   ngOnInit(): void {
 
@@ -44,7 +45,7 @@ export class PlaceDetailComponent implements OnInit {
 
   savePlace(){
     event.stopPropagation();
-    if(!this.auth.isAuthenticated()){
+    if(!this.auth.loggedIn){
       this.auth.login();
     } else {
       //save place

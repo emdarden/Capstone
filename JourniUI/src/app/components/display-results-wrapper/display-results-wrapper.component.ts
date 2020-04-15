@@ -18,8 +18,9 @@ export class DisplayResultsWrapperComponent implements OnInit{
   searchSubscription: Subscription;
   query: string;
   request;
-  placeService
+  placeService;
 
+  loading = false;
   showMapBool = false;
   detailOpen= false;
 
@@ -33,7 +34,7 @@ export class DisplayResultsWrapperComponent implements OnInit{
      }
 
   ngOnInit(): void {
-
+    this.loading = true;
     this.mapsService.initMap(document.getElementById('map'));
 
     this.mapsService.getMapStatus().subscribe(res => {
@@ -53,6 +54,8 @@ export class DisplayResultsWrapperComponent implements OnInit{
     
     this.searchSubscription = this.service.getSearchResults().subscribe(results => {
       this.searchResults = results;
+      console.log(results);
+      this.loading = false;
     })
 
     this.service.getIsDetailOpen().subscribe(bool => this.detailOpen = bool)
