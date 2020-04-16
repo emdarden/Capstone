@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Trip } from 'src/app/models/trip.model';
 import { TripService } from 'src/app/services/trip.service';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-trip.component.scss']
 })
 export class CreateTripComponent implements OnInit {
+  @Output() refresh = new EventEmitter();
 
   user;
   tripSubscription$: Subscription;
@@ -32,9 +33,8 @@ export class CreateTripComponent implements OnInit {
     this.tripSubscription$ = this.tripService.createTrip(this.user.User_ID, trip).subscribe(res=> console.log(res));
     this.activeModal.close('Close click');
 
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/trips']);
-    });
+    this.refresh.emit();
+    
   }
 
   getPic(){

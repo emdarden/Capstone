@@ -33,14 +33,16 @@ export class DisplayTripsComponent implements OnInit {
     this.auth.userProfile$.subscribe(user => {
       this.userId = user.sub
     })
-
-    this.tripsSubscription$ = this.tripService.getAllTrips(this.userId).subscribe(trips => {
-      this.trips = trips;
-    });    
+    
+    this.getTrips();
   }
 
   createTrip(){
-    this.modalService.open(CreateTripComponent, { centered: true , size: 'sm' });
+    const modalRef = this.modalService.open(CreateTripComponent, { centered: true , size: 'sm' });
+
+    modalRef.componentInstance.refresh.subscribe(() => {
+      this.getTrips();
+    })
   }
 
   confirmRemoveTrip(content){
@@ -50,9 +52,12 @@ export class DisplayTripsComponent implements OnInit {
   removeTrip(tripName){
     this.tripService.removeTrip(this.userId, tripName).subscribe(res => console.log(res));
     this.modalService.dismissAll('Close click');
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/trips']);
-    });
+    this.getTrips();
   }
 
+  getTrips(){
+    this.tripsSubscription$ = this.tripService.getAllTrips(this.userId).subscribe(trips => {
+      this.trips = trips;
+    });
+  }
 }
