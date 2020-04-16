@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using JourniAPI.Models;
+using MongoDB.Driver;
 
 namespace JourniAPI.Services
 {
     public class TripService
     {
-        //private readonly IMongoCollection<User> _users;
+        private readonly IMongoCollection<User> _users;
         private readonly UserService _userService;
 
-        public TripService(UserService userService)
+        public TripService(IJourniDatabaseSettings settings, UserService userService)
         {
-            //var client = new MongoClient(settings.ConnectionString);
-            //var database = client.GetDatabase(settings.DatabaseName);
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
 
-            //_users = database.GetCollection<User>(settings.UsersCollectionName);
+            _users = database.GetCollection<User>(settings.UsersCollectionName);
+
             _userService = userService;
 
         }
@@ -27,15 +29,28 @@ namespace JourniAPI.Services
         }
 
 
-        ////public Trip GetTrip(string tripId) => _trips.Find(trip => trip.Id == tripId).FirstOrDefault();
+        public Trip GetTrip(string userID, string tripName)
+        {
+            User user = _userService.Get(userID);
+
+            Trip trip = user.Trips.Find(trip => trip.Name == tripName);
+
+            return trip;
+        }
 
 
-        ////public Trip CreateTrip(Trip trip)
-        ////{
-        ////    _trips.InsertOne(trip);
+        public Trip CreateTrip(string userID, Trip trip)
+        {
+            User user = _userService.Get(userID);
 
-        ////    return trip;
-        ////}
+            user.Trips.Add(trip);
+
+            _users.FindOneAndUpdate(
+                user => user.User_ID == userID,
+                Builders<User>.Update.Set("Trips", user.Trips));
+
+            return trip;
+        }
 
         ////public void Update(string id, User userIn) => _users.ReplaceOne(user => user.Id == id, userIn);
 

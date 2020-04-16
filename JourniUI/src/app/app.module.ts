@@ -19,6 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DisplayTripsComponent } from './components/display-trips/display-trips.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CreateTripComponent } from './components/create-trip/create-trip.component';
+import { AuthService } from './services/auth.service';
 
 export const googleAPIKey = environment.googleAPIKey;
 
@@ -34,7 +36,7 @@ export const googleAPIKey = environment.googleAPIKey;
     DisplayResultsWrapperComponent, 
     NavComponent, 
     PlaceDetailComponent, 
-    ProfileComponent, DisplayTripsComponent, HeaderComponent,
+    ProfileComponent, DisplayTripsComponent, HeaderComponent, CreateTripComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,10 @@ export const googleAPIKey = environment.googleAPIKey;
     GoogleMapsModule,
     NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CreateTripComponent
+  ]
 })
 export class AppModule { }

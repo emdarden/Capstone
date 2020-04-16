@@ -15,11 +15,17 @@ export class TripService {
     return this.http.get('api/trips', { params , headers })
   }
   
-  getTrip(userId, tripId){
-    return this.http.get(`api/users/${userId}/trips/${tripId}`)
+  getTrip(userId, tripName){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const params = new HttpParams().set('id', `${userId}`);
+
+    return this.http.get(`api/trips/${tripName}`, { params , headers })
   }
 
-  addTrip(userId, trip){
+  createTrip(userId, trip){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const params = new HttpParams().set('id', `${userId}`);
+    return this.http.post(`api/trips/${trip.Name}`, JSON.stringify(trip), { params , headers })
 
   }
 }

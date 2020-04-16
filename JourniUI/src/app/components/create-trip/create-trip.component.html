@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title">Create a Trip</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <input type="text" placeholder="Enter a Name" #tripName (keyup.enter)="saveTrip(tripName.value)">
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="saveTrip(tripName.value)">Save</button>
+</div>

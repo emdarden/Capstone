@@ -11,7 +11,7 @@ namespace JourniAPI.Controllers
     public class TripsController : ControllerBase
     {
         private readonly TripService _tripService;
-        
+
         public TripsController(TripService tripService)
         {
             _tripService = tripService;
@@ -23,6 +23,17 @@ namespace JourniAPI.Controllers
             return _tripService.GetAllTrips(id);
         }
 
+        [HttpGet("{tripName}")]
+        public ActionResult<Trip> GetTrip(string id, string tripName)
+        {
+            return _tripService.GetTrip(id, tripName);
+        }
+
+        [HttpPost("{trip.tripName}")]
+        public ActionResult<Trip> CreateTrip(string id, Trip trip)
+        {
+            return Ok(_tripService.CreateTrip(id, trip));
+        }
 
     }
 }

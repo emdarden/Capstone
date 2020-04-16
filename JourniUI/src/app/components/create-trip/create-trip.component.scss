@@ -1,0 +1,24 @@
+@import "../../../style/base";
+
+.modal-header {
+    border: none;
+
+    .close {
+        outline: none;
+    }
+
+}
+
+.modal-body {
+
+    input {
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $journi-light-blue;
+        font-size: 1.3rem;
+    }
+}
+
+.modal-footer {
+    border: none;
+}
