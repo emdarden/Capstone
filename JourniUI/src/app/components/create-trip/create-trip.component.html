@@ -5,6 +5,7 @@
     </button>
 </div>
 <div class="modal-body">
+    <p *ngIf="duplicate">This name is already used. Please choose a different name.</p>
     <input type="text" placeholder="Enter a Name" #tripName (keyup.enter)="saveTrip(tripName.value)">
 </div>
 <div class="modal-footer">

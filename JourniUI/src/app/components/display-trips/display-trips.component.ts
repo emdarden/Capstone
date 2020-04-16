@@ -56,8 +56,10 @@ export class DisplayTripsComponent implements OnInit {
   }
 
   getTrips(){
-    this.tripsSubscription$ = this.tripService.getAllTrips(this.userId).subscribe(trips => {
-      this.trips = trips;
-    });
+    setTimeout(() => {
+      this.tripsSubscription$ = this.tripService.getAllTrips(this.userId).subscribe(trips => {
+        this.trips = trips;
+      });
+    }, 100)   
   }
 }

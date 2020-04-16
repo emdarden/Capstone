@@ -16,6 +16,7 @@ export class CreateTripComponent implements OnInit {
 
   user;
   tripSubscription$: Subscription;
+  duplicate = false;
 
   constructor(
     public activeModal: NgbActiveModal, 
@@ -29,12 +30,16 @@ export class CreateTripComponent implements OnInit {
   }
 
   saveTrip(tripName){
-    const trip = new Trip(this.getPic(), tripName, []);
-    this.tripSubscription$ = this.tripService.createTrip(this.user.User_ID, trip).subscribe(res=> console.log(res));
-    this.activeModal.close('Close click');
+    var duplicate = this.user.Trips.find(trip => trip.Name.toLowerCase() === tripName.toLowerCase());
+    if(duplicate){
+      this.duplicate = true;
+    } else {
+      const trip = new Trip(this.getPic(), tripName, []);
+      this.tripSubscription$ = this.tripService.createTrip(this.user.User_ID, trip).subscribe(res=> console.log(res));
+      this.activeModal.close('Close click');
 
-    this.refresh.emit();
-    
+      this.refresh.emit();
+    }
   }
 
   getPic(){
