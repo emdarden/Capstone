@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JourniAPI.Models;
 using MongoDB.Driver;
 
@@ -52,6 +53,19 @@ namespace JourniAPI.Services
             return trip;
         }
 
+        public void RemoveTrip(string userID, string tripName)
+        {
+            User user = _userService.Get(userID);
+
+            var item = user.Trips.Single(trip1 => trip1.Name == tripName);
+
+            user.Trips.Remove(item);
+
+            _users.FindOneAndUpdate(
+                user => user.User_ID == userID,
+                Builders<User>.Update.Set("Trips", user.Trips));
+        }
+
         ////public void Update(string id, User userIn) => _users.ReplaceOne(user => user.Id == id, userIn);
 
         //public void UpdateTrip(Trip trip, string userId)
@@ -60,7 +74,7 @@ namespace JourniAPI.Services
 
         //}
 
-        //public void RemoveTrip(string id) => _users.DeleteOne(user => user.Id == id);
+
 
     }
 }

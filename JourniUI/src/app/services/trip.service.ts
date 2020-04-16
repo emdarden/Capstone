@@ -25,7 +25,15 @@ export class TripService {
   createTrip(userId, trip){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const params = new HttpParams().set('id', `${userId}`);
+
     return this.http.post(`api/trips/${trip.Name}`, JSON.stringify(trip), { params , headers })
 
+  }
+
+  removeTrip(userId, tripName){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const params = new HttpParams().set('id', `${userId}`).set('tripName', `${tripName}`);
+
+    return this.http.delete(`api/trips/${tripName}`, { params , headers })
   }
 }

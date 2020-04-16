@@ -35,5 +35,12 @@ namespace JourniAPI.Controllers
             return Ok(_tripService.CreateTrip(id, trip));
         }
 
+        [HttpDelete("{trip.tripName}")]
+        public IActionResult RemoveTrip(string id, string tripName)
+        {
+            _tripService.RemoveTrip(id, tripName);
+            return NoContent();
+        }
+
     }
 }

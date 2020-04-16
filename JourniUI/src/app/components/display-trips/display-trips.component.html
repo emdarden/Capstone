@@ -4,12 +4,30 @@
     <h1>My Trips</h1>
 
     <div class="trips">
-        <div class="card-a create-trip" (click)="creatTrip()">
+        <div class="card-a create-trip" (click)="createTrip()">
             <i class="fas fa-plus-circle"></i>
             <p>Create a Trip</p>
         </div>
         <div class="card-a" *ngFor="let trip of trips" [style.background-image]="'url(' + trip.Img + ')'">
+            <i class="fas fa-times" (click) ="confirmRemoveTrip(content)"></i>
             <p class="trip-name">{{trip.Name | uppercase}}</p>
+
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title">Remove Trip?</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to remove <b>{{ trip.Name }}</b> trip?&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light cancel" (click)="modal.close('Close click')">Cancel</button>
+                  <button type="button" class="btn btn-light" (click)="removeTrip(trip.Name)">Remove</button>
+                </div>
+              </ng-template>
         </div>
     </div>
 </div>
+
