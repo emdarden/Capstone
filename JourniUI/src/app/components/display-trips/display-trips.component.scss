@@ -38,6 +38,7 @@
             justify-content: center;
             background-size: cover;
             font-size: 1.3rem;
+            position: relative;
 
             .trip-name {
                 color: white;
@@ -46,8 +47,8 @@
 
             .fa-times {
                 position: absolute;
-                padding-left: 250px;
-                padding-bottom: 175px;
+                left: 260px;
+                top: 15px;
                 color: rgba(255,255,255,0.35);
 
                 &:hover {
