@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 import { EventEmitter } from 'protractor';
 import { SearchResultsService } from 'src/app/services/search-results.service';
-import { AuthLockService } from 'src/app/services/auth-lock.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
 import { SavePlaceComponent } from '../save-place/save-place.component';

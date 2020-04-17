@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthLockService } from 'src/app/services/auth-lock.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

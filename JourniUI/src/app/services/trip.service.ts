@@ -1,38 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TripService {
+  constructor(private http: HttpClient, private auth: AuthService) { 
+  }
 
-  constructor(private http: HttpClient) { }
-
-  getAllTrips(userId){
+  getAllTrips(){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const params = new HttpParams().set('id', `${userId}`);
-
-    return this.http.get('api/trips', { params , headers })
+    return this.http.get('api/trips', { headers })
   }
   
-  getTrip(userId, tripName){
+  getTrip(tripName){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const params = new HttpParams().set('id', `${userId}`);
-
-    return this.http.get(`api/trips/${tripName}`, { params , headers })
+    return this.http.get(`api/trips/${tripName}`, { headers })
   }
 
-  createTrip(userId, trip){
+  createTrip(trip){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const params = new HttpParams().set('id', `${userId}`);
 
-    return this.http.post(`api/trips/${trip.Name}`, JSON.stringify(trip), { params , headers })
+    return this.http.post(`api/trips/${trip.Name}`, JSON.stringify(trip), { headers })
 
   }
 
-  removeTrip(userId, tripName){
+  removeTrip(tripName){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const params = new HttpParams().set('id', `${userId}`).set('tripName', `${tripName}`);
+    const params = new HttpParams().set('tripName', `${tripName}`);
 
     return this.http.delete(`api/trips/${tripName}`, { params , headers })
   }

@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { Router } from '@angular/router';
 import { MapsService } from 'src/app/services/maps.service';
-import { AuthLockService } from 'src/app/services/auth-lock.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

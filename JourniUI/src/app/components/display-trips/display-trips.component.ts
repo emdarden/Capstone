@@ -50,14 +50,14 @@ export class DisplayTripsComponent implements OnInit {
   }
 
   removeTrip(tripName){
-    this.tripService.removeTrip(this.userId, tripName).subscribe(res => console.log(res));
+    this.tripService.removeTrip(tripName).subscribe(res => console.log(res));
     this.modalService.dismissAll('Close click');
     this.getTrips();
   }
 
   getTrips(){
     setTimeout(() => {
-      this.tripsSubscription$ = this.tripService.getAllTrips(this.userId).subscribe(trips => {
+      this.tripsSubscription$ = this.tripService.getAllTrips().subscribe(trips => {
         this.trips = trips;
       });
     }, 100)   
