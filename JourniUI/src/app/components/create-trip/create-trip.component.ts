@@ -35,7 +35,7 @@ export class CreateTripComponent implements OnInit {
       this.duplicate = true;
     } else {
       const trip = new Trip(this.getPic(), tripName, []);
-      this.tripSubscription$ = this.tripService.createTrip(this.user.User_ID, trip).subscribe(res=> console.log(res));
+      this.tripSubscription$ = this.tripService.createTrip(trip).subscribe(res=> console.log(res));
       this.activeModal.close('Close click');
 
       this.refresh.emit();
