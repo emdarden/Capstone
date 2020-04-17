@@ -8,6 +8,8 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
 import { AuthLockService } from 'src/app/services/auth-lock.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
+import { SavePlaceComponent } from '../save-place/save-place.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -32,7 +34,9 @@ export class CardComponent implements OnInit {
     private router: Router, 
     private searchService: SearchResultsService,
     private auth: AuthService,
-    private api: ApiService) { 
+    private api: ApiService,
+    private modalService: NgbModal,
+    ) { 
   
   }
 
@@ -68,7 +72,7 @@ export class CardComponent implements OnInit {
     if(!this.auth.loggedIn){
       this.auth.login();
     } else {      
-      //save place
+      this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
     }
   }
 
