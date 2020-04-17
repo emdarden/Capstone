@@ -2,9 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Trip } from 'src/app/models/trip.model';
 import { TripService } from 'src/app/services/trip.service';
-import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-trip',
@@ -14,23 +12,21 @@ import { Router } from '@angular/router';
 export class CreateTripComponent implements OnInit {
   @Output() refresh = new EventEmitter();
 
-  user;
+  trips
   tripSubscription$: Subscription;
   duplicate = false;
 
   constructor(
     public activeModal: NgbActiveModal, 
     private tripService: TripService, 
-    private userService: UserService,
-    private router: Router
     ) { }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe(user => this.user = user);
+    this.tripService.getAllTrips().subscribe(trips => this.trips = trips);
   }
 
   saveTrip(tripName){
-    var duplicate = this.user.Trips.find(trip => trip.Name.toLowerCase() === tripName.toLowerCase());
+    var duplicate = this.trips.find(trip => trip.Name.toLowerCase() === tripName.toLowerCase());
     if(duplicate){
       this.duplicate = true;
     } else {
@@ -43,8 +39,8 @@ export class CreateTripComponent implements OnInit {
   }
 
   getPic(){
-    var picNumber = (this.user.Trips.length % 3) + 1
-    console.log(this.user.Trips.length)
+    var picNumber = (this.trips.length % 3) + 1
+    console.log(this.trips.length)
     return `../../../assets/imgs/world_map_${picNumber}.png`
   }
 

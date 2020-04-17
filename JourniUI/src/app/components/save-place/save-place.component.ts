@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Trip } from 'src/app/models/trip.model';
 import { TripService } from 'src/app/services/trip.service';
-import { UserService } from 'src/app/services/user.service';
+import { CreateTripComponent } from '../create-trip/create-trip.component';
 
 @Component({
   selector: 'app-save-place',
@@ -11,18 +11,35 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SavePlaceComponent implements OnInit {
 
-  trips: Trip;
-  userId
+  trips: Trip[];
+  selectedTrip: string;
 
-  constructor(public activeModal: NgbActiveModal, private tripService: TripService, private userService: UserService) { }
+  constructor(public activeModal: NgbActiveModal, private tripService: TripService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     
-    // this.tripService.getAllTrips()
+    // this.tripService.getAllTrips().subscribe(trips => this.trips = trips);
+    this.getTrips();
   }
   
   save(){
-
+    console.log(this.selectedTrip);
+    this.activeModal.close('Close click');
   }
 
+  createTrip(){
+    const modalRef = this.modalService.open(CreateTripComponent, { centered: true , size: 'sm' });
+
+    modalRef.componentInstance.refresh.subscribe(() => {
+      this.getTrips();
+    })
+  }
+
+  getTrips(){
+    setTimeout(() => {
+      this.tripService.getAllTrips().subscribe(trips => {
+        this.trips = trips;
+      });
+    }, 100)   
+  }
 }

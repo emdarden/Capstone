@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TripService } from 'src/app/services/trip.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateTripComponent } from '../create-trip/create-trip.component';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,10 +14,7 @@ export class DisplayTripsComponent implements OnInit {
 
   constructor(
     private tripService: TripService, 
-    private auth: AuthService,
-    private user: UserService, 
     private modalService: NgbModal,
-    private router: Router
     ) { 
     document.body.style.margin = "0 75px";
   }
@@ -29,11 +24,6 @@ export class DisplayTripsComponent implements OnInit {
   tripsSubscription$: Subscription;
 
   ngOnInit(): void {
-
-    this.auth.userProfile$.subscribe(user => {
-      this.userId = user.sub
-    })
-    
     this.getTrips();
   }
 
@@ -60,6 +50,6 @@ export class DisplayTripsComponent implements OnInit {
       this.tripsSubscription$ = this.tripService.getAllTrips().subscribe(trips => {
         this.trips = trips;
       });
-    }, 100)   
+    }, 200)   
   }
 }

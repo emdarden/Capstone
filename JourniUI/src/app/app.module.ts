@@ -22,6 +22,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { CreateTripComponent } from './components/create-trip/create-trip.component';
 import { AuthService } from './services/auth.service';
 import { SavePlaceComponent } from './components/save-place/save-place.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 export const googleAPIKey = environment.googleAPIKey;
 
@@ -49,7 +51,9 @@ export const googleAPIKey = environment.googleAPIKey;
     }),
     FontAwesomeModule,
     GoogleMapsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

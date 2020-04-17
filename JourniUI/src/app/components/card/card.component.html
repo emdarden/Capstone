@@ -3,7 +3,7 @@
     <div class="card-body">
         <div class="header-a">
             <p class="card-name">{{ cardName }}</p>
-            <div class="heart-icon" (click)="savePlace()">
+            <div class="heart-icon" (click)="savePlace()" [class.saved]="placeSaved">
                 <i class="fas fa-heart"></i>
                 <i class="far fa-heart"></i>
             </div>

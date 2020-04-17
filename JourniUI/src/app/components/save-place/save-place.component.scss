@@ -1,0 +1,34 @@
+.modal-header, .modal-footer {
+    border: none;
+
+    .close {
+        outline: none;
+    }
+}
+
+.modal-body {
+
+    padding: 0 1rem;
+
+    select {
+        width: 100px;
+    }
+
+    .add-trip {
+        display: flex;
+        margin-top: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        i {
+            padding-top: 3px;
+            margin-right: 7px;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+}
