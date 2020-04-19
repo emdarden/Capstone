@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { Trip } from '../models/trip.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,12 @@ export class TripService {
 
   getAllTrips(){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get('api/trips', { headers })
+    return this.http.get<Trip[]>('api/trips', { headers })
   }
   
   getTrip(tripName){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get(`api/trips/${tripName}`, { headers })
+    return this.http.get<Trip>(`api/trips/${tripName}`, { headers })
   }
 
   createTrip(trip){

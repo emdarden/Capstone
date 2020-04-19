@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TripService } from 'src/app/services/trip.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateTripComponent } from '../create-trip/create-trip.component';
 import { Subscription } from 'rxjs';
 

@@ -24,6 +24,9 @@ import { AuthService } from './services/auth.service';
 import { SavePlaceComponent } from './components/save-place/save-place.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { DisplayTripComponent } from './components/display-trip/display-trip.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragPlaceComponent } from './components/drag-place/drag-place.component';
 
 export const googleAPIKey = environment.googleAPIKey;
 
@@ -39,7 +42,12 @@ export const googleAPIKey = environment.googleAPIKey;
     DisplayResultsWrapperComponent, 
     NavComponent, 
     PlaceDetailComponent, 
-    ProfileComponent, DisplayTripsComponent, HeaderComponent, CreateTripComponent, SavePlaceComponent,
+    ProfileComponent, 
+    DisplayTripsComponent, 
+    HeaderComponent, 
+    CreateTripComponent, 
+    SavePlaceComponent, 
+    DisplayTripComponent, DragPlaceComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,8 @@ export const googleAPIKey = environment.googleAPIKey;
     GoogleMapsModule,
     NgbModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
