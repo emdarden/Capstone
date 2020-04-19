@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'search', component: DisplayResultsWrapperComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'trips', component: DisplayTripsComponent, canActivate: [AuthGuard]},
-  { path: 'trips/:tripName' , component: DisplayTripComponent, canActivate: [AuthGuard]}
+  { path: 'trips/:id' , component: DisplayTripComponent, canActivate: [AuthGuard]}
 ];
 
 

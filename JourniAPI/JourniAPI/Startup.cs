@@ -48,6 +48,8 @@ namespace JourniAPI
 
             services.AddSingleton<UserService>();
             services.AddSingleton<TripService>();
+            services.AddSingleton<DayService>();
+            services.AddSingleton<PlaceService>();
 
             services.AddControllers().AddNewtonsoftJson(options => options.UseMemberCasing());
 

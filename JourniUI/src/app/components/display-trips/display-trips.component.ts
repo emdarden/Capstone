@@ -38,8 +38,8 @@ export class DisplayTripsComponent implements OnInit {
     this.modalService.open(content, { size: 'sm' ,centered: true});
   }
 
-  removeTrip(tripName){
-    this.tripService.removeTrip(tripName).subscribe(res => console.log(res));
+  removeTrip(trip){
+    this.tripService.removeTrip(trip).subscribe(res => console.log(res));
     this.modalService.dismissAll('Close click');
     this.getTrips();
   }
@@ -48,6 +48,7 @@ export class DisplayTripsComponent implements OnInit {
     setTimeout(() => {
       this.tripsSubscription$ = this.tripService.getAllTrips().subscribe(trips => {
         this.trips = trips;
+        console.log(this.trips)
       });
     }, 200)   
   }

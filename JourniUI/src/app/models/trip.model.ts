@@ -1,9 +1,9 @@
-import { Place } from './place.model';
+import { Day } from './day.model';
 
 export class Trip {
     constructor(
     public Img: string,
     public Name: string,
-    public Places: Place[],
+    public Days: Day[],
     ){}
 }

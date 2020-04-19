@@ -15,22 +15,23 @@ export class TripService {
     return this.http.get<Trip[]>('api/trips', { headers })
   }
   
-  getTrip(tripName){
+  getTrip(trip){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<Trip>(`api/trips/${tripName}`, { headers })
+    return this.http.get<Trip>(`api/trips/${trip._id}`, { headers })
   }
 
   createTrip(trip){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post(`api/trips/${trip.Name}`, JSON.stringify(trip), { headers })
+    return this.http.post(`api/trips/${trip._id}`, JSON.stringify(trip), { headers })
 
   }
 
-  removeTrip(tripName){
+  removeTrip(trip){
+    console.log(trip);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const params = new HttpParams().set('tripName', `${tripName}`);
+    const params = new HttpParams().set('tripId', `${trip._id}`);
 
-    return this.http.delete(`api/trips/${tripName}`, { params , headers })
+    return this.http.delete(`api/trips/${trip._id}`, { params , headers })
   }
 }

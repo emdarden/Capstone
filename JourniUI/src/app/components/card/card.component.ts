@@ -27,13 +27,13 @@ export class CardComponent implements OnInit {
   map;
   query;
   userId;
+  placeSaved;
 
   constructor(private mapsService: MapsService, 
     private route: ActivatedRoute, 
     private router: Router, 
     private searchService: SearchResultsService,
     private auth: AuthService,
-    private api: ApiService,
     private modalService: NgbModal,
     ) { 
   
@@ -70,8 +70,12 @@ export class CardComponent implements OnInit {
     event.stopPropagation();
     if(!this.auth.loggedIn){
       this.auth.login();
-    } else {      
+    } else if(!this.placeSaved) {      
       this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
+      this.placeSaved = true; // check if place in a day
+    } else{
+      this.placeSaved = false
+      //unsave place
     }
   }
 
