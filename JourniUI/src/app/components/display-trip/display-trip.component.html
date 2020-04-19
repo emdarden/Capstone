@@ -2,17 +2,17 @@
 
 <div class="container-a">
     <h1>Trip Name</h1>
-    
-    <div cdkDropListGroup>
 
-        <div class="example-container" *ngFor="let day of days; let i = index">
+    <div *ngIf="trip" cdkDropListGroup>
+
+        <div class="example-container" *ngFor="let day of trip.Days; let i = index">
             <div class="header-a">
                 <p *ngIf="i !== 0">Day {{i}}</p>
                 <p *ngIf="i === 0" >Unscheduled</p>
             </div>
           
-            <div cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="day.Day" class="example-list">
-                <div class="example-box" *ngFor="let place of day.Day" cdkDrag>
+            <div cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="day.Places" class="example-list">
+                <div class="example-box" *ngFor="let place of day.Places" cdkDrag>
                     <app-drag-place [place]="place" class="drag"></app-drag-place>
                 </div>
             </div>

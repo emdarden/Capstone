@@ -8,6 +8,7 @@ namespace JourniAPI.Models
         public List<Place> Places { get; set; }
         public Day()
         {
+            this.Places = new List<Place>();
         }
     }
 }

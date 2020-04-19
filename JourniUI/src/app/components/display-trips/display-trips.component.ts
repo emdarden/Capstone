@@ -3,6 +3,9 @@ import { TripService } from 'src/app/services/trip.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateTripComponent } from '../create-trip/create-trip.component';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Trip } from 'src/app/models/trip.model';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-display-trips',
@@ -14,6 +17,8 @@ export class DisplayTripsComponent implements OnInit {
   constructor(
     private tripService: TripService, 
     private modalService: NgbModal,
+    private router: Router,
+    private route: ActivatedRoute
     ) { 
     document.body.style.margin = "0 75px";
   }
@@ -21,8 +26,17 @@ export class DisplayTripsComponent implements OnInit {
   trips;
   userId;
   tripsSubscription$: Subscription;
+  selectedTripId;
 
   ngOnInit(): void {
+    this.route.paramMap.pipe(
+      switchMap(params => {
+        this.selectedTripId = params.get('id');
+        // console.log(this.tripId)
+        return this.tripService.getAllTrips();
+      })
+    )
+
     this.getTrips();
   }
 
@@ -35,6 +49,7 @@ export class DisplayTripsComponent implements OnInit {
   }
 
   confirmRemoveTrip(content){
+    event.stopPropagation();
     this.modalService.open(content, { size: 'sm' ,centered: true});
   }
 
@@ -51,5 +66,10 @@ export class DisplayTripsComponent implements OnInit {
         console.log(this.trips)
       });
     }, 200)   
+  }
+
+  showTrip(trip: Trip){
+    event.stopPropagation();
+    this.router.navigate(['/trips', trip._id]);
   }
 }

@@ -15,9 +15,10 @@ export class TripService {
     return this.http.get<Trip[]>('api/trips', { headers })
   }
   
-  getTrip(trip){
+  getTrip(tripId){
+    tripId = tripId.toString();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<Trip>(`api/trips/${trip._id}`, { headers })
+    return this.http.get<Trip>(`api/trips/${tripId}`, { headers })
   }
 
   createTrip(trip){

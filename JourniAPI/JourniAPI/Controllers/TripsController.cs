@@ -30,7 +30,7 @@ namespace JourniAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("{trip._id}")]
+        [HttpGet("{tripId}")]
         public ActionResult<Trip> GetTrip(string tripId)
         {
             ObjectId _id = ObjectId.Parse(tripId);
@@ -47,7 +47,7 @@ namespace JourniAPI.Controllers
         }
 
         [Authorize]
-        [HttpDelete("{trip._id}")]
+        [HttpDelete("{tripId}")]
         public IActionResult RemoveTrip(string tripId)
         {
             ObjectId _id = ObjectId.Parse(tripId);

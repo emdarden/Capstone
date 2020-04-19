@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { TripService } from 'src/app/services/trip.service';
+import { ActivatedRoute } from '@angular/router';
+import { Trip } from 'src/app/models/trip.model';
+import { switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-display-trip',
@@ -12,29 +17,11 @@ export class DisplayTripComponent implements OnInit {
 
   dayList = []
 
-  constructor() { 
-    // this.days = [
-    //   {
-    //     name: "day1",
-    //     PlaceId: [
-    //     'Get to work',
-    //     'Pick up groceries',
-    //     'Go home',
-    //     'Fall asleep'
-    //     ]
-    //   },
-    //   {
-    //     name: "day2",
-    //     places: [
-    //     'Get up',
-    //     'Brush teeth',
-    //     'Take a shower',
-    //     'Check e-mail',
-    //     'Walk dog'
-    //     ]
-    //   }
-    // ];
+  tripId: string;
+  trip: Trip;
 
+  constructor(private tripService: TripService, private route: ActivatedRoute) { 
+   
     this.days = [
       { 
         Day: [
@@ -67,6 +54,12 @@ export class DisplayTripComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.tripId = this.route.snapshot.paramMap.get('id');
+    
+    this.tripService.getTrip(this.tripId).subscribe(res => {
+      this.trip = res;
+      console.log(this.trip)
+    })
   }
 
   drop(event: CdkDragDrop<string[]>) {
