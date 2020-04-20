@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using JourniAPI.Models;
 using JourniAPI.Services;
@@ -20,6 +21,15 @@ namespace JourniAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public ActionResult<List<string>> GetAllPlaces()
+        {
+            string id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            return _placeService.GetAllPlaces(id);
+        }
+
+        [Authorize]
         [HttpPost("{place.PlaceId}")]
         public ActionResult<Day> AddPlace(string tripId, Place place)
         {
@@ -31,12 +41,11 @@ namespace JourniAPI.Controllers
 
         [Authorize]
         [HttpDelete("{placeId}")]
-        public ActionResult<Day> RemovePlace(string tripId, string placeId, int day)
+        public ActionResult<Day> RemovePlace(string placeId)
         {
-            ObjectId _id = ObjectId.Parse(tripId);
             string id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            return _placeService.RemovePlace(id, _id, placeId, day);
+            return _placeService.RemovePlace(id, placeId);
         }
     }
 }

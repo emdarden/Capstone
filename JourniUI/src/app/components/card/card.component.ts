@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
 import { SavePlaceComponent } from '../save-place/save-place.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlaceService } from 'src/app/services/place.service';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class CardComponent implements OnInit {
   query;
   userId;
   placeSaved;
+  allPlaces: string[];
 
   constructor(private mapsService: MapsService, 
     private route: ActivatedRoute, 
@@ -35,6 +37,7 @@ export class CardComponent implements OnInit {
     private searchService: SearchResultsService,
     private auth: AuthService,
     private modalService: NgbModal,
+    private placeService: PlaceService
     ) { 
   
   }
@@ -52,6 +55,12 @@ export class CardComponent implements OnInit {
     this.route.queryParamMap.subscribe((ParamsAsMap) => {
       this.query = ParamsAsMap['params'].query;
     });
+
+    this.placeService.getAllPlaces().subscribe(res => {
+      this.allPlaces = res;
+      this.placeSaved = this.allPlaces.includes(this.cardItem.place_id)
+    })
+
 
   }
 
@@ -73,13 +82,17 @@ export class CardComponent implements OnInit {
     } else if(!this.placeSaved) {      
       const modalRef = this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
       modalRef.componentInstance.place = this.cardItem;
-
-      this.placeSaved = true; // check if place in a day
+      this.placeSaved = this.isPlaceSaved();
     } else{
       this.placeSaved = false
-      //unsave place
+      this.placeService.removePlace(this.cardItem.place_id).subscribe(res => console.log(res))
     }
   }
+
+  isPlaceSaved(){
+    return this.allPlaces.includes(this.cardItem.place_id)
+  }
+
 
 }
 
