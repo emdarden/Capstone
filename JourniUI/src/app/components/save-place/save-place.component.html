@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
     <select [(ngModel)]="selectedTrip">
-        <option *ngFor="let trip of trips" [ngValue]="trip.Name">{{trip.Name}}</option>
+        <option *ngFor="let trip of trips" [ngValue]="trip">{{trip.Name}}</option>
     </select>
     <div class="add-trip" (click)="createTrip()">
         <i class="fas fa-plus"></i>

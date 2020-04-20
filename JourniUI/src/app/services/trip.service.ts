@@ -7,7 +7,7 @@ import { Trip } from '../models/trip.model';
   providedIn: 'root'
 })
 export class TripService {
-  constructor(private http: HttpClient, private auth: AuthService) { 
+  constructor(private http: HttpClient) { 
   }
 
   getAllTrips(){

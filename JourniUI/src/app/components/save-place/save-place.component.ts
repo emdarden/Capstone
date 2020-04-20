@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Trip } from 'src/app/models/trip.model';
 import { TripService } from 'src/app/services/trip.service';
 import { CreateTripComponent } from '../create-trip/create-trip.component';
+import { Place } from 'src/app/models/place.model';
+import { PlaceService } from 'src/app/services/place.service';
 
 @Component({
   selector: 'app-save-place',
@@ -10,20 +12,25 @@ import { CreateTripComponent } from '../create-trip/create-trip.component';
   styleUrls: ['./save-place.component.scss']
 })
 export class SavePlaceComponent implements OnInit {
+  @Input() place;
 
   trips: Trip[];
-  selectedTrip: string;
+  selectedTrip: Trip;
 
-  constructor(public activeModal: NgbActiveModal, private tripService: TripService, private modalService: NgbModal) { }
+  constructor(public activeModal: NgbActiveModal, private tripService: TripService, private modalService: NgbModal, private placeService: PlaceService) { }
 
   ngOnInit(): void {
-    
+    console.log(this.place)
     // this.tripService.getAllTrips().subscribe(trips => this.trips = trips);
     this.getTrips();
   }
   
   save(){
     console.log(this.selectedTrip);
+    var newPlace = new Place(this.place.place_id, this.place.name, this.place.photos[0].url, this.place.geometry.location);
+    this.placeService.addPlace(this.selectedTrip._id, newPlace).subscribe(res =>
+      console.log(res))
+
     this.activeModal.close('Close click');
   }
 

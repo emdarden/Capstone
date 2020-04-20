@@ -71,7 +71,9 @@ export class CardComponent implements OnInit {
     if(!this.auth.loggedIn){
       this.auth.login();
     } else if(!this.placeSaved) {      
-      this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
+      const modalRef = this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
+      modalRef.componentInstance.place = this.cardItem;
+
       this.placeSaved = true; // check if place in a day
     } else{
       this.placeSaved = false

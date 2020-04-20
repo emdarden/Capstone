@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Trip } from 'src/app/models/trip.model';
 import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { DayService } from 'src/app/services/day.service';
 
 @Component({
   selector: 'app-display-trip',
@@ -13,53 +14,23 @@ import { Subscription } from 'rxjs';
 })
 export class DisplayTripComponent implements OnInit {
 
-  days = []
-
-  dayList = []
-
   tripId: string;
   trip: Trip;
 
-  constructor(private tripService: TripService, private route: ActivatedRoute) { 
-   
-    this.days = [
-      { 
-        Day: [
-          {
-            Name: "place 1"
-          },
-          {
-            Name: "place 2"
-          },
-          {
-            Name: "place 3"
-          },
-        ]
-      },
-      { 
-        Day: [
-          {
-            Name: "place 4"
-          },
-          {
-            Name: "place 5"
-          },
-          {
-            Name: "place 6"
-          },
-        ]
-      }
-     
-    ];
-  }
+  constructor(
+    private tripService: TripService, 
+    private route: ActivatedRoute,
+    private dayService: DayService
+    ) {}
 
   ngOnInit(): void {
     this.tripId = this.route.snapshot.paramMap.get('id');
-    
-    this.tripService.getTrip(this.tripId).subscribe(res => {
-      this.trip = res;
-      console.log(this.trip)
-    })
+
+    this.getTrip();
+    // this.tripService.getTrip(this.tripId).subscribe(res => {
+    //   this.trip = res;
+    //   console.log(this.trip)
+    // })
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -71,7 +42,15 @@ export class DisplayTripComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
-    //update db here - no need for save?
+    this.dayService.updateDays(this.tripId, this.trip.Days).subscribe(res => {
+      this.getTrip();
+    })
+  }
+
+  getTrip(){
+    this.tripService.getTrip(this.tripId).subscribe(res => {
+      this.trip = res;
+    })
   }
 
 }
