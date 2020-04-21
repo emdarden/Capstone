@@ -65,7 +65,7 @@ export class CardComponent implements OnInit {
   savePlace(){
     event.stopPropagation();
     if(!this.auth.loggedIn){
-      this.auth.login();
+      this.auth.login(this.router.routerState.snapshot.url);
     } else {      
       //save place
     }

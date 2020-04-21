@@ -1,5 +1,5 @@
 
-<a (click)="auth.login()" *ngIf="!auth.loggedIn">Log In</a>
+<a (click)="auth.login(stateURL)" *ngIf="!auth.loggedIn">Log In</a>
 <!-- <i class="fas fa-user-circle" (click)="auth.logout()" *ngIf="auth.loggedIn"></i> -->
 <div ngbDropdown *ngIf="auth.loggedIn">
     <i class="fas fa-user-circle" ngbDropdownToggle></i>
