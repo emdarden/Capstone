@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Trip } from 'src/app/models/trip.model';
 import { TripService } from 'src/app/services/trip.service';
@@ -13,6 +13,7 @@ import { PlaceService } from 'src/app/services/place.service';
 })
 export class SavePlaceComponent implements OnInit {
   @Input() place;
+  @Output() placeSaved = new EventEmitter();
 
   trips: Trip[];
   selectedTrip: Trip;
@@ -28,9 +29,10 @@ export class SavePlaceComponent implements OnInit {
   save(){
     console.log(this.selectedTrip);
     var newPlace = new Place(this.place.place_id, this.place.name, this.place.photos[0].url, this.place.geometry.location);
-    this.placeService.addPlace(this.selectedTrip._id, newPlace).subscribe(res =>
-      console.log(res))
-
+    this.placeService.addPlace(this.selectedTrip._id, newPlace).subscribe(res => {
+      console.log(res);
+      this.placeSaved.emit();
+    })
     this.activeModal.close('Close click');
   }
 

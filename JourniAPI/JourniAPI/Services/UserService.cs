@@ -21,7 +21,18 @@ namespace JourniAPI.Services
 
         public List<User> Get() => _users.Find(user => true).ToList();
 
-        public User Get(string id) => _users.Find(user => user.User_ID == id).FirstOrDefault();
+        public User Get(string id)
+        {
+            User user =_users.Find(user => user.User_ID == id).FirstOrDefault();
+
+            if( user == null)
+            {
+                user = new User(id);
+                _users.InsertOne(user);
+            }
+
+            return user;
+        }
 
     }
 }

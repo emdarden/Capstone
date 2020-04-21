@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { SavePlaceComponent } from '../save-place/save-place.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaceService } from 'src/app/services/place.service';
+import { Subscription, Subject } from 'rxjs';
 
 
 @Component({
@@ -30,6 +31,8 @@ export class CardComponent implements OnInit {
   userId;
   placeSaved;
   allPlaces: string[];
+  placeSubscription$: Subscription;
+  placeStatus = new Subject();
 
   constructor(private mapsService: MapsService, 
     private route: ActivatedRoute, 
@@ -61,7 +64,7 @@ export class CardComponent implements OnInit {
       this.placeSaved = this.allPlaces.includes(this.cardItem.place_id)
     })
 
-
+    // this.getAllPlaces();
   }
 
   showDetails(){
@@ -82,17 +85,20 @@ export class CardComponent implements OnInit {
     } else if(!this.placeSaved) {      
       const modalRef = this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
       modalRef.componentInstance.place = this.cardItem;
-      this.placeSaved = this.isPlaceSaved();
+      modalRef.componentInstance.placeSaved.subscribe(res => {
+        this.placeSaved = true;
+      })
     } else{
-      this.placeSaved = false
-      this.placeService.removePlace(this.cardItem.place_id).subscribe(res => console.log(res))
+      this.placeService.removePlace(this.cardItem.place_id).subscribe(res => {
+        console.log(res);
+        this.placeSaved = false;
+      })
     }
   }
 
   isPlaceSaved(){
     return this.allPlaces.includes(this.cardItem.place_id)
   }
-
 
 }
 

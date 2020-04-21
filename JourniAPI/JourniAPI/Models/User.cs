@@ -13,9 +13,11 @@ namespace JourniAPI.Models
         public List<Trip> Trips { get; set; }
         public List<string> Places { get; set; }
 
-        public User()
+        public User(string id)
         {
-
+            this.User_ID = id;
+            this.Trips = new List<Trip>();
+            this.Places = new List<string>();
         }
     }
 }

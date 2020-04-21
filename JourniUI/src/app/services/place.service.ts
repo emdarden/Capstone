@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Place } from '../models/place.model';
 import { Day } from '../models/day.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlaceService {
+
+  placeStatus = new Subject();
 
   constructor(private http: HttpClient) { }
 
@@ -29,4 +32,6 @@ export class PlaceService {
     return this.http.delete<Day>(`api/places/${placeId}`, { headers })
 
   }
+
+
 }
