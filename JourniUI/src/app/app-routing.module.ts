@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'search', component: DisplayResultsWrapperComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'trips', component: DisplayTripsComponent, canActivate: [AuthGuard]},
-  { path: 'callback', component: CallbackComponent}
+  { path: 'callback', component: CallbackComponent},
   { path: 'trips/:id' , component: DisplayTripComponent, canActivate: [AuthGuard]}
 ];
 
