@@ -21,6 +21,8 @@ import { DisplayTripsComponent } from './components/display-trips/display-trips.
 import { HeaderComponent } from './components/header/header.component';
 import { CreateTripComponent } from './components/create-trip/create-trip.component';
 import { AuthService } from './services/auth.service';
+import { CallbackComponent } from './components/callback/callback.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 export const googleAPIKey = environment.googleAPIKey;
 
@@ -36,7 +38,7 @@ export const googleAPIKey = environment.googleAPIKey;
     DisplayResultsWrapperComponent, 
     NavComponent, 
     PlaceDetailComponent, 
-    ProfileComponent, DisplayTripsComponent, HeaderComponent, CreateTripComponent,
+    ProfileComponent, DisplayTripsComponent, HeaderComponent, CreateTripComponent, FiltersComponent, CallbackComponent
   ],
   imports: [
     BrowserModule,
