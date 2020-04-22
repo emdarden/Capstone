@@ -38,6 +38,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
 
     this.cardName = this.cardItem.name; //remove ".result" in prod
+    console.log(this.cardItem)
     this.cardImageURL = this.cardItem.photos[0].getUrl(); //change url to getUrl() in prod
     // this.cardImageURL = this.cardItem.photos[0].url; //change url to getUrl() in prod
     this.cardRating = this.cardItem.rating;

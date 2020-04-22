@@ -51,8 +51,8 @@ export class SearchResultsService {
     })
 
     return resultDetails;
-    this.searchResult$.next(this.sampleData);
-    return this.sampleData
+    // this.searchResult$.next(this.sampleData);
+    // return this.sampleData
   }
 
   getDetails(results) {
