@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TripService } from 'src/app/services/trip.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateTripComponent } from '../create-trip/create-trip.component';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Trip } from 'src/app/models/trip.model';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-display-trips',
@@ -16,10 +16,9 @@ export class DisplayTripsComponent implements OnInit {
 
   constructor(
     private tripService: TripService, 
-    private auth: AuthService,
-    private user: UserService, 
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { 
     document.body.style.margin = "0 75px";
   }
@@ -27,13 +26,17 @@ export class DisplayTripsComponent implements OnInit {
   trips;
   userId;
   tripsSubscription$: Subscription;
+  selectedTripId;
 
   ngOnInit(): void {
+    this.route.paramMap.pipe(
+      switchMap(params => {
+        this.selectedTripId = params.get('id');
+        // console.log(this.tripId)
+        return this.tripService.getAllTrips();
+      })
+    )
 
-    this.auth.userProfile$.subscribe(user => {
-      this.userId = user.sub
-    })
-    
     this.getTrips();
   }
 
@@ -46,11 +49,12 @@ export class DisplayTripsComponent implements OnInit {
   }
 
   confirmRemoveTrip(content){
+    event.stopPropagation();
     this.modalService.open(content, { size: 'sm' ,centered: true});
   }
 
-  removeTrip(tripName){
-    this.tripService.removeTrip(tripName).subscribe(res => console.log(res));
+  removeTrip(trip){
+    this.tripService.removeTrip(trip).subscribe(res => console.log(res));
     this.modalService.dismissAll('Close click');
     this.getTrips();
   }
@@ -59,7 +63,13 @@ export class DisplayTripsComponent implements OnInit {
     setTimeout(() => {
       this.tripsSubscription$ = this.tripService.getAllTrips().subscribe(trips => {
         this.trips = trips;
+        console.log(this.trips)
       });
-    }, 100)   
+    }, 200)   
+  }
+
+  showTrip(trip: Trip){
+    event.stopPropagation();
+    this.router.navigate(['/trips', trip._id]);
   }
 }

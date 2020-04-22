@@ -15,7 +15,7 @@
 
 <div class="sub-header">
     <h2>{{ place.name }}</h2>
-    <div class="heart-icon" (click)="savePlace()">
+    <div class="heart-icon" (click)="savePlace()" [class.saved]="placeSaved">
         <i class="fas fa-heart"></i>
         <i class="far fa-heart"></i>
     </div>

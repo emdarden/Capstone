@@ -7,6 +7,10 @@ import { EventEmitter } from 'protractor';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
+import { SavePlaceComponent } from '../save-place/save-place.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlaceService } from 'src/app/services/place.service';
+import { Subscription, Subject } from 'rxjs';
 
 
 @Component({
@@ -25,13 +29,19 @@ export class CardComponent implements OnInit {
   map;
   query;
   userId;
+  placeSaved;
+  allPlaces: string[];
+  placeSubscription$: Subscription;
+  placeStatus = new Subject();
 
   constructor(private mapsService: MapsService, 
     private route: ActivatedRoute, 
     private router: Router, 
     private searchService: SearchResultsService,
     private auth: AuthService,
-    private api: ApiService) { 
+    private modalService: NgbModal,
+    private placeService: PlaceService
+    ) { 
   
   }
 
@@ -50,6 +60,12 @@ export class CardComponent implements OnInit {
       this.query = ParamsAsMap['params'].query;
     });
 
+    this.placeService.getAllPlaces().subscribe(res => {
+      this.allPlaces = res;
+      this.placeSaved = this.allPlaces.includes(this.cardItem.place_id)
+    })
+
+    // this.getAllPlaces();
   }
 
   showDetails(){
@@ -66,10 +82,23 @@ export class CardComponent implements OnInit {
   savePlace(){
     event.stopPropagation();
     if(!this.auth.loggedIn){
-      this.auth.login(this.router.routerState.snapshot.url);
-    } else {      
-      //save place
+      this.auth.login();
+    } else if(!this.placeSaved) {      
+      const modalRef = this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
+      modalRef.componentInstance.place = this.cardItem;
+      modalRef.componentInstance.placeSaved.subscribe(res => {
+        this.placeSaved = true;
+      })
+    } else{
+      this.placeService.removePlace(this.cardItem.place_id).subscribe(res => {
+        console.log(res);
+        this.placeSaved = false;
+      })
     }
+  }
+
+  isPlaceSaved(){
+    return this.allPlaces.includes(this.cardItem.place_id)
   }
 
 }

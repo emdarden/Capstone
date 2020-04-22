@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">Select a Trip</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <select [(ngModel)]="selectedTrip">
+        <option *ngFor="let trip of trips" [ngValue]="trip">{{trip.Name}}</option>
+    </select>
+    <div class="add-trip" (click)="createTrip()">
+        <i class="fas fa-plus"></i>
+        <p>Create New Trip</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="save()">Save</button>
+</div>

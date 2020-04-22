@@ -23,6 +23,12 @@ import { CreateTripComponent } from './components/create-trip/create-trip.compon
 import { AuthService } from './services/auth.service';
 import { CallbackComponent } from './components/callback/callback.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { SavePlaceComponent } from './components/save-place/save-place.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { DisplayTripComponent } from './components/display-trip/display-trip.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragPlaceComponent } from './components/drag-place/drag-place.component';
 
 export const googleAPIKey = environment.googleAPIKey;
 
@@ -38,7 +44,15 @@ export const googleAPIKey = environment.googleAPIKey;
     DisplayResultsWrapperComponent, 
     NavComponent, 
     PlaceDetailComponent, 
-    ProfileComponent, DisplayTripsComponent, HeaderComponent, CreateTripComponent, FiltersComponent, CallbackComponent
+    ProfileComponent, 
+    DisplayTripsComponent, 
+    HeaderComponent, 
+    CreateTripComponent, 
+    SavePlaceComponent, 
+    DisplayTripComponent, 
+    DragPlaceComponent,
+    FiltersComponent, 
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -50,12 +64,16 @@ export const googleAPIKey = environment.googleAPIKey;
     }),
     FontAwesomeModule,
     GoogleMapsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    DragDropModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [
-    CreateTripComponent
+    CreateTripComponent,
+    SavePlaceComponent
   ]
 })
 export class AppModule { }
