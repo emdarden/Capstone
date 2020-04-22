@@ -38,8 +38,8 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
 
     this.cardName = this.cardItem.name; //remove ".result" in prod
-    // this.cardImageURL = this.cardItem.photos[0].getUrl(); //change url to getUrl() in prod
-    this.cardImageURL = this.cardItem.photos[0].url; //change url to getUrl() in prod
+    this.cardImageURL = this.cardItem.photos[0].getUrl(); //change url to getUrl() in prod
+    // this.cardImageURL = this.cardItem.photos[0].url; //change url to getUrl() in prod
     this.cardRating = this.cardItem.rating;
     this.cardTotalRatings = this.cardItem.user_ratings_total;
     
@@ -53,8 +53,8 @@ export class CardComponent implements OnInit {
 
   showDetails(){
     event.stopPropagation();
-    // var position = {lat: this.cardItem.geometry.location.lat(), lng: this.cardItem.geometry.location.lng()}
-    var position = this.cardItem.geometry.location;
+    var position = {lat: this.cardItem.geometry.location.lat(), lng: this.cardItem.geometry.location.lng()}
+    // var position = this.cardItem.geometry.location;
     this.mapsService.setMapStatus(true);
     this.mapsService.highlightMarker(position);
     this.router.navigate(['/search'], { queryParams: {query: this.query, place: this.cardName}}).then;

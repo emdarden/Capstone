@@ -11,12 +11,7 @@
                 <h1>Traveling to {{query}}</h1>
 
                 <div class="filters">
-                    <div class="filters-search">
-                        <button>Distance <i class="fas fa-sort-down"></i></button>
-                        <button>Type <i class="fas fa-sort-down"></i></button>
-                        <button>Price <i class="fas fa-sort-down"></i></button>
-                        <button>Ratings <i class="fas fa-sort-down"></i></button>
-                    </div>
+                    <app-filters [query]="query"></app-filters>
 
                     <div class="show-map" *ngIf="!showMapBool" (click)="showMap()">
                         <i class="fas fa-map-marker-alt"></i>
@@ -25,8 +20,8 @@
                 </div>
 
                 <div class="cards-a" [class.show-map]="showMapBool">
-                    <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card" [showMap]="showMapBool"></app-card>
-                    <!-- <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="place-card"></app-card> -->
+                    <!-- <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card" [showMap]="showMapBool"></app-card> -->
+                    <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="place-card"></app-card>
                 </div>
 
             </div>

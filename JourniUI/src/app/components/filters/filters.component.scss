@@ -1,0 +1,40 @@
+@import "../../../style/base";
+
+.filters-search {
+    display: flex;
+
+    .dropdown {
+
+        .filter-btn {
+            border: 1px solid $journi-grey;
+            height: 35px;
+            width: fit-content;
+            margin-right: 15px;
+            border-radius: 3px;
+            font-size: 15px;
+            outline: none;
+            color: black;
+        
+            &:hover {
+                cursor: pointer;
+                background-color: $journi-green;
+                color: white;
+            }
+
+            &:focus {
+                background-color: $journi-green;
+                color: white;
+                outline: none;
+            }
+        }
+
+        .sub-btn {
+
+            &:active {
+                outline: none;
+                background-color: $journi-green;
+            }
+        }
+        
+    }
+}
