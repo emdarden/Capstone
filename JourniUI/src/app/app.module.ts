@@ -21,7 +21,10 @@ import { DisplayTripsComponent } from './components/display-trips/display-trips.
 import { HeaderComponent } from './components/header/header.component';
 import { CreateTripComponent } from './components/create-trip/create-trip.component';
 import { AuthService } from './services/auth.service';
+<<<<<<< Updated upstream
 import { CallbackComponent } from './components/callback/callback.component';
+=======
+>>>>>>> Stashed changes
 import { FiltersComponent } from './components/filters/filters.component';
 
 export const googleAPIKey = environment.googleAPIKey;
@@ -38,7 +41,11 @@ export const googleAPIKey = environment.googleAPIKey;
     DisplayResultsWrapperComponent, 
     NavComponent, 
     PlaceDetailComponent, 
+<<<<<<< Updated upstream
     ProfileComponent, DisplayTripsComponent, HeaderComponent, CreateTripComponent, FiltersComponent, CallbackComponent
+=======
+    ProfileComponent, DisplayTripsComponent, HeaderComponent, CreateTripComponent, FiltersComponent,
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
