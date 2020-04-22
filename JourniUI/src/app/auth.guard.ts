@@ -22,6 +22,15 @@ export class AuthGuard implements CanActivate {
         }
       })
     );
+    
+    
+    // if(!this.auth.isAuthenticated()){
+    //   setTimeout(() => {
+    //     this.router.navigate[('')];
+    //   }, 1000)
+    // }
+
+    // return this.auth.isAuthenticated()
   }
   
 }

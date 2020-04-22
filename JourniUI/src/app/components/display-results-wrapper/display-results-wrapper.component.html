@@ -11,12 +11,43 @@
                 <h1>Traveling to {{query}}</h1>
 
                 <div class="filters">
+<<<<<<< Updated upstream
                     <div class="filters-search">
+<<<<<<< HEAD
                         <button>Distance <i class="fas fa-sort-down"></i></button>
                         <button>Type <i class="fas fa-sort-down"></i></button>
                         <button>Price <i class="fas fa-sort-down"></i></button>
                         <button>Ratings <i class="fas fa-sort-down"></i></button>
+=======
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Distance</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button ngbDropdownItem>Action - 1</button>
+                              <button ngbDropdownItem>Another Action</button>
+                              <button ngbDropdownItem>Something else is here</button>
+                            </div>
+                        </div>
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Type</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button ngbDropdownItem>Museum</button>
+                              <button ngbDropdownItem>Park</button>
+                              <button ngbDropdownItem>Restaurant</button>
+                            </div>
+                          </div>
+                          <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button ngbDropdownItem>Action - 1</button>
+                              <button ngbDropdownItem>Another Action</button>
+                              <button ngbDropdownItem>Something else is here</button>
+                            </div>
+                          </div>
+>>>>>>> parent of 035782e...  -
                     </div>
+=======
+                    <app-filters [query]="query"></app-filters>
+>>>>>>> Stashed changes
 
                     <div class="show-map" *ngIf="!showMapBool" (click)="showMap()">
                         <i class="fas fa-map-marker-alt"></i>
@@ -25,8 +56,8 @@
                 </div>
 
                 <div class="cards-a" [class.show-map]="showMapBool">
-                    <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card" [showMap]="showMapBool"></app-card>
-                    <!-- <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="place-card"></app-card> -->
+                    <!-- <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card" [showMap]="showMapBool"></app-card> -->
+                    <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="place-card"></app-card>
                 </div>
 
             </div>

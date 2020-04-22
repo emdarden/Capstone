@@ -7,14 +7,12 @@ import { AuthGuard } from './auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { DisplayTripsComponent } from './components/display-trips/display-trips.component';
-import { CallbackComponent } from './components/callback/callback.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
   { path: 'search', component: DisplayResultsWrapperComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  { path: 'trips', component: DisplayTripsComponent, canActivate: [AuthGuard]},
-  { path: 'callback', component: CallbackComponent}
+  { path: 'trips', component: DisplayTripsComponent, canActivate: [AuthGuard]}
 ];
 
 
