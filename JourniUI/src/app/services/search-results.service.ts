@@ -30,27 +30,27 @@ export class SearchResultsService {
      var resultDetails;
 
    
-    this.servicePromise.then(() => { 
-      const googleSearch = query => {
-        return new Promise((resolve, reject) => {
-          this.placeService.textSearch(query, (results, status) => {
-            if(status === 'OK') {
-              resolve(results);
-            } else {
-              reject(status);
-            }
-          })
-        }).then(results => {
-          return this.getDetails(results);
-        }).then(results => {
-          this.searchResult$.next(results);
-        })
-      };
+    // this.servicePromise.then(() => { 
+    //   const googleSearch = query => {
+    //     return new Promise((resolve, reject) => {
+    //       this.placeService.textSearch(query, (results, status) => {
+    //         if(status === 'OK') {
+    //           resolve(results);
+    //         } else {
+    //           reject(status);
+    //         }
+    //       })
+    //     }).then(results => {
+    //       return this.getDetails(results);
+    //     }).then(results => {
+    //       this.searchResult$.next(results);
+    //     })
+    //   };
   
-     googleSearch(request)
-    })
+    //  googleSearch(request)
+    // })
 
-    return resultDetails;
+    // return resultDetails;
     this.searchResult$.next(this.sampleData);
     return this.sampleData
   }

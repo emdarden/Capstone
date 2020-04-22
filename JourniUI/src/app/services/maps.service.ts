@@ -30,8 +30,8 @@ export class MapsService {
   }
 
   addMarker(place){
-    // var position = place.geometry.location
-    var position = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
+    var position = place.geometry.location
+    // var position = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
 
     this.mapPromise.then(() => {
       this.markers.push(new google.maps.Marker({position: position, map: this.map}))

@@ -54,6 +54,7 @@ export class DisplayResultsWrapperComponent implements OnInit{
     
     this.searchSubscription = this.service.getSearchResults().subscribe(results => {
       this.searchResults = results;
+      console.log(results);
       this.loading = false;
     })
 
