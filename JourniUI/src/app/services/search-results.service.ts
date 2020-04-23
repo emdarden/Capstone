@@ -28,7 +28,7 @@ export class SearchResultsService {
 
   public setSearchResults(request): Observable<any>{
      var resultDetails;
-
+     this.searchResult$.next(null);
    
     this.servicePromise.then(() => { 
       const googleSearch = query => {

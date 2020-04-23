@@ -6,11 +6,13 @@ import { MapsAPILoader } from '@agm/core';
 import { MapsService } from 'src/app/services/maps.service';
 import { Location } from '@angular/common';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations'
 
 @Component({
   selector: 'app-display-results-wrapper',
   templateUrl: './display-results-wrapper.component.html',
-  styleUrls: ['./display-results-wrapper.component.scss']
+  styleUrls: ['./display-results-wrapper.component.scss'],
+  
 })
 export class DisplayResultsWrapperComponent implements OnInit{
   searchResult$: Subscription;

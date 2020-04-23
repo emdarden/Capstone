@@ -8,31 +8,9 @@
     margin: 0 auto;
 
     .header {
-
-        display: flex;
-        justify-content: space-between;
         position: sticky;
         top: 0;
-        background: white;
         z-index: 100;
-        box-shadow: 0 2px 2px -2px grey;
-        padding-bottom: 20px;
-
-        .logo {
-            width: 100px;
-            float: left;
-            margin-top: 20px;
-            margin-left: -7px;
-        }
-
-        .nav {
-            margin-top: 40px;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
     }
 
     .wrapper {
@@ -58,7 +36,6 @@
             
                 .filters {
             
-                    margin-bottom: 30px;
                     display: flex;
                     justify-content: space-between;
             
@@ -86,6 +63,10 @@
                         display: flex;
                     }
                 }
+
+                .animation {
+                    align-self: center;
+                }
             
                 .cards-a {
                     display: flex;
@@ -93,16 +74,20 @@
                     max-width: 1300px;
                     padding-top: 25px;
                     margin: 0 auto;
-                    justify-content: space-between;
+                    justify-content: flex-start;
 
-                    &.show-map {
-                        // justify-content: center;
-                    }
-        
                     .place-card {
                         margin: 15px;
                         width: fit-content;
                         border: none;
+
+                        animation: fadein 3s;
+                        transform: translateY(5px);
+                        
+                        @keyframes fadein {
+                          from { opacity: 0; }
+                          to   { opacity: 1; }
+                        }
                     }
     
                 }
