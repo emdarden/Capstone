@@ -29,7 +29,6 @@ export class TripService {
   }
 
   removeTrip(trip){
-    console.log(trip);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const params = new HttpParams().set('tripId', `${trip._id}`);
 

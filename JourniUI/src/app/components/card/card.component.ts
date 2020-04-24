@@ -30,7 +30,8 @@ export class CardComponent implements OnInit {
   query;
   userId;
   placeSaved;
-  allPlaces: string[];
+  allPlaces;
+  allPlaces$: Subscription;
   placeSubscription$: Subscription;
   placeStatus = new Subject();
 
@@ -48,7 +49,6 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
 
     this.cardName = this.cardItem.name; //remove ".result" in prod
-    console.log(this.cardItem)
     this.cardImageURL = this.cardItem.photos[0].getUrl(); //change url to getUrl() in prod
     // this.cardImageURL = this.cardItem.photos[0].url; //change url to getUrl() in prod
     this.cardRating = this.cardItem.rating;
@@ -64,6 +64,12 @@ export class CardComponent implements OnInit {
       this.allPlaces = res;
       this.placeSaved = this.allPlaces.includes(this.cardItem.place_id)
     })
+
+    this.allPlaces$ = this.placeService.allPlaces.subscribe(res => {
+      this.allPlaces = res;
+      this.placeSaved = this.allPlaces.includes(this.cardItem.place_id)
+    })
+
 
     // this.getAllPlaces();
   }
@@ -91,7 +97,6 @@ export class CardComponent implements OnInit {
       })
     } else{
       this.placeService.removePlace(this.cardItem.place_id).subscribe(res => {
-        console.log(res);
         this.placeSaved = false;
       })
     }

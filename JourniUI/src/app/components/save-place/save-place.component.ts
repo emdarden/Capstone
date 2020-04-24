@@ -21,18 +21,16 @@ export class SavePlaceComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private tripService: TripService, private modalService: NgbModal, private placeService: PlaceService) { }
 
   ngOnInit(): void {
-    console.log(this.place)
     // this.tripService.getAllTrips().subscribe(trips => this.trips = trips);
     this.getTrips();
   }
   
   save(){
-    console.log(this.selectedTrip);
     var newPlace = new Place(this.place.place_id, this.place.name, this.place.photos[0].url, this.place.geometry.location);
     this.placeService.addPlace(this.selectedTrip._id, newPlace).subscribe(res => {
-      console.log(res);
       this.placeSaved.emit();
     })
+    this.placeService.getAllPlaces();
     this.activeModal.close('Close click');
   }
 

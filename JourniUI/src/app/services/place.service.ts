@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Place } from '../models/place.model';
 import { Day } from '../models/day.model';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlaceService {
 
-  placeStatus = new Subject();
+  public allPlaces = new Subject();
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,8 @@ export class PlaceService {
 
   public getAllPlaces(){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<string[]>(`api/places`, { headers })
+    return this.http.get<string[]>(`api/places`, { headers }).pipe(
+      tap(x => this.allPlaces.next(x)))
   }
 
   public removePlace(placeId){

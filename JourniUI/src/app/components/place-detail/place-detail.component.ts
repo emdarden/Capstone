@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SavePlaceComponent } from '../save-place/save-place.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaceService } from 'src/app/services/place.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-place-detail',
@@ -23,6 +24,7 @@ export class PlaceDetailComponent implements OnInit {
   showNavigationArrows = true;
   showNavigationIndicators = true;
   allPlaces;
+  allPlaces$: Subscription;
 
   constructor(
     private searchService: SearchResultsService, 
@@ -36,8 +38,8 @@ export class PlaceDetailComponent implements OnInit {
 
     this.searchService.getSelectedPlace().subscribe(place => {
       this.place = place;
-      this.images[0] = this.place.photos[0].url;
-      // this.getImages(this.place.photos);
+      // this.images[0] = this.place.photos[0].url;
+      this.getImages(this.place.photos);
 
       this.placeService.getAllPlaces().subscribe(res => {
         this.allPlaces = res;
@@ -45,18 +47,20 @@ export class PlaceDetailComponent implements OnInit {
       })
     })
 
-    console.log(this.place)
-
+    this.allPlaces$ = this.placeService.allPlaces.subscribe(res => this.allPlaces = res)
   }
 
   hideDetails(){
     this.router.navigate(['/search'], { queryParams: {query: this.query}});
     this.searchService.setIsDetailOpen(false);
     this.mapsService.refreshMap();
+    this.placeService.getAllPlaces().subscribe(res => {
+      
+    });
+
   }
 
   savePlace(){
-    event.stopPropagation();
     if(!this.auth.loggedIn){
       this.auth.login();
     } else if(!this.placeSaved) {      
@@ -67,7 +71,6 @@ export class PlaceDetailComponent implements OnInit {
       })
     } else{
       this.placeService.removePlace(this.place.place_id).subscribe(res => {
-        console.log(res);
         this.placeSaved = false;
       })
     }
