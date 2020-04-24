@@ -66,4 +66,12 @@ export class MapsService {
 
   }
 
+  addMarkerColor(markerId){
+
+  }
+
+  removeMarkerColor(markerId){
+
+  }
+
 }
