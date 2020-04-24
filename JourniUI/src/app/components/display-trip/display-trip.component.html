@@ -13,7 +13,7 @@
           
             <div cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="day.Places" class="example-list">
                 <div class="example-box" *ngFor="let place of day.Places" cdkDrag>
-                    <app-drag-place [place]="place" class="drag"></app-drag-place>
+                    <app-drag-place [place]="place" class="drag" (removePlace)="removePlace($event)"></app-drag-place>
                 </div>
             </div>
         </div>

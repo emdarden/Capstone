@@ -6,6 +6,7 @@ import { Trip } from 'src/app/models/trip.model';
 import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { DayService } from 'src/app/services/day.service';
+import { PlaceService } from 'src/app/services/place.service';
 
 @Component({
   selector: 'app-display-trip',
@@ -20,7 +21,8 @@ export class DisplayTripComponent implements OnInit {
   constructor(
     private tripService: TripService, 
     private route: ActivatedRoute,
-    private dayService: DayService
+    private dayService: DayService,
+    private placeService: PlaceService
     ) {}
 
   ngOnInit(): void {
@@ -51,6 +53,11 @@ export class DisplayTripComponent implements OnInit {
     this.tripService.getTrip(this.tripId).subscribe(res => {
       this.trip = res;
     })
+  }
+
+  removePlace(placeId){
+    this.placeService.removePlace(placeId).subscribe(res => 
+      this.getTrip());
   }
 
 }

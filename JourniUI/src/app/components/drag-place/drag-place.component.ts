@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MapsService } from 'src/app/services/maps.service';
 import { MapsAPILoader } from '@agm/core';
 import { SearchResultsService } from 'src/app/services/search-results.service';
@@ -10,6 +10,7 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
 })
 export class DragPlaceComponent implements OnInit {
   @Input() place;
+  @Output("removePlace") removePlace = new EventEmitter();
 
 
 
@@ -19,8 +20,10 @@ export class DragPlaceComponent implements OnInit {
 
   ngOnInit(): void {
     
-    
+  }
 
+  remove(){
+    this.removePlace.emit(this.place.PlaceId);
   }
 
 

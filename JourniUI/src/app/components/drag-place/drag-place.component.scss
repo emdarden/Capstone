@@ -1,8 +1,26 @@
+@import "../../../style/base";
+
 .drag-row {
     display: flex;
     justify-content: space-between;
 
-    p {
-        margin: 0;
+    .close-name {
+        display: flex;
+
+        p {
+            margin: 0;
+        }
+
+        .fa-times {
+            padding-top: 3px;
+            margin-right: 10px;
+            color: $journi-grey;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
     }
+
 }

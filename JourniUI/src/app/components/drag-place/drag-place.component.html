@@ -1,5 +1,8 @@
 
 <div class="drag-row">
-    <p >{{place.Name}}</p>
+    <div class="close-name">
+        <i class="fas fa-times" (click)="remove()"></i>
+        <p >{{place.Name}}</p>
+    </div>
     <i class="fas fa-grip-lines"></i>
 </div>
