@@ -23,7 +23,7 @@
                 <lottie-player *ngIf="!searchResults || searchResults.length < 7" class="animation" src="https://assets6.lottiefiles.com/datafiles/e8edab32a32a8a9402f9cd63b457993c/Plane.json"  background="transparent"  speed=".75"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
                 <div class="cards-a" [class.show-map]="showMapBool" *ngIf="searchResults && searchResults.length >= 7">
                     <!-- <app-card *ngFor="let item of searchResults" [cardItem] = "item.result" class="place-card" [showMap]="showMapBool"></app-card> -->
-                    <app-card *ngFor="let item of searchResults" [cardItem] = "item" class="place-card" [showMap]="showMapBool"></app-card>
+                    <app-card *ngFor="let item of searchResults; let i = index " id="id{{i}}" [index]="i" [cardItem] = "item" class="place-card" [showMap]="showMapBool"></app-card>
                 </div>
 
             </div>

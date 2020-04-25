@@ -51,6 +51,7 @@ export class DisplayResultsWrapperComponent implements OnInit{
     this.route.queryParamMap.pipe(distinctUntilChanged((a,b) => a['params'].query === b['params'].query)).subscribe((ParamsAsMap) => {
       this.query = ParamsAsMap['params'].query;
       this.request = {query: "things to do in " + this.query};
+      this.mapsService.removeMarkers();
       this.service.setSearchResults(this.request);
     })
     

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { MapsService } from 'src/app/services/maps.service';
 import { MapsAPILoader } from '@agm/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,6 +21,7 @@ import { Subscription, Subject } from 'rxjs';
 export class CardComponent implements OnInit {
   @Input() cardItem;
   @Input() showMap;
+  @Input() index;
   
   cardName: string;
   cardImageURL: string;
@@ -54,7 +55,7 @@ export class CardComponent implements OnInit {
     this.cardRating = this.cardItem.rating;
     this.cardTotalRatings = this.cardItem.user_ratings_total;
     
-    this.mapsService.addMarker(this.cardItem);
+    this.mapsService.addMarker(this.cardItem, this.index);
 
     this.route.queryParamMap.subscribe((ParamsAsMap) => {
       this.query = ParamsAsMap['params'].query;
@@ -79,7 +80,7 @@ export class CardComponent implements OnInit {
     var position = {lat: this.cardItem.geometry.location.lat(), lng: this.cardItem.geometry.location.lng()}
     // var position = this.cardItem.geometry.location;
     this.mapsService.setMapStatus(true);
-    this.mapsService.highlightMarker(position);
+    this.mapsService.highlightMarker(position, this.index);
     this.router.navigate(['/search'], { queryParams: {query: this.query, place: this.cardName}}).then;
     this.searchService.setSelectedPlace(this.cardItem);
     this.searchService.setIsDetailOpen(true);
