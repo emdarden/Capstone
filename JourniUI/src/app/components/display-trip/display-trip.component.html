@@ -2,6 +2,12 @@
 
 <div *ngIf="trip" class="container-a">
     <h1>{{trip.Name}}</h1>
+    <div class="days">
+        <p class="day-label">Days:</p>
+        <i class="fas fa-minus" (click)="removeDays()"></i>
+        <p class="day-number">{{days}}</p>
+        <i class="fas fa-plus" (click)="addDays()"></i>
+    </div>
 
     <div cdkDropListGroup>
 

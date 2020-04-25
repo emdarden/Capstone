@@ -17,6 +17,7 @@ export class DisplayTripComponent implements OnInit {
 
   tripId: string;
   trip: Trip;
+  days; 
 
   constructor(
     private tripService: TripService, 
@@ -52,12 +53,24 @@ export class DisplayTripComponent implements OnInit {
   getTrip(){
     this.tripService.getTrip(this.tripId).subscribe(res => {
       this.trip = res;
+      this.days = res.Days.length - 1
     })
   }
 
   removePlace(placeId){
-    this.placeService.removePlace(placeId).subscribe(res => 
-      this.getTrip());
+    this.placeService.removePlace(placeId).subscribe(res => this.getTrip());
+  }
+
+  addDays(){
+    this.dayService.addDay(this.trip._id, (this.trip.Days.length + 1)).subscribe( res => {
+      this.getTrip()
+    })
+  }
+
+  removeDays(){
+    this.dayService.removeDay(this.trip._id, (this.trip.Days.length)).subscribe( res => {
+      this.getTrip()
+    })
   }
 
 }

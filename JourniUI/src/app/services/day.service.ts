@@ -16,4 +16,22 @@ export class DayService {
 
     return this.http.post('api/days', JSON.stringify(days), { headers , params})
   }
+
+  public addDay(tripId, day){
+    tripId = tripId.toString();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const params = new HttpParams().set('tripId', `${tripId}`);
+
+    return this.http.post(`api/days/${day}`, null , { headers , params})
+    
+  }
+
+  public removeDay(tripId, day){
+    tripId = tripId.toString();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const params = new HttpParams().set('tripId', `${tripId}`);
+    
+    return this.http.delete(`api/days/${day}`, { headers , params})
+    
+  }
 }

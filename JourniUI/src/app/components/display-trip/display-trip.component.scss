@@ -10,6 +10,34 @@
         margin: 20px 0px;
     }
 
+    .days {
+        margin-bottom: 20px;
+        display: flex;;
+
+        p {
+            margin: 0;
+        }
+
+        .day-label {
+            margin-right: 20px;
+        }
+
+        .day-number {
+            margin: 0 10px;
+            width: fit-content;
+        }
+
+        .fa-minus, .fa-plus {
+
+            padding-top: 4px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+    }
+
     .example-container {
         width: 400px;
         max-width: 100%;
