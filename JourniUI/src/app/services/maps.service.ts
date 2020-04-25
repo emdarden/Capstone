@@ -38,7 +38,6 @@ export class MapsService {
       var marker = new google.maps.Marker({position: position, map: this.map})
       var infowindow = new google.maps.InfoWindow({ content: '<h6>' + place.name + '</h6>'})
       var card = <HTMLElement>document.querySelector(id)
-      console.log(index)
 
       card.addEventListener('mouseover', () => {
         infowindow.open( this.map, marker );
@@ -46,6 +45,16 @@ export class MapsService {
       
       card.addEventListener('mouseout', function() {
         infowindow.close();
+      });
+
+      card.addEventListener('click', () => {
+        for (var i = 0; i < this.markers.length; i++) {
+          document.querySelector('#id' + i).classList.remove("highlight")
+        }
+      })
+
+      google.maps.event.addListener(infowindow, "closeclick", function() {
+        card.classList.remove("highlight")
       });
 
       marker.addListener('click', () => {
@@ -58,6 +67,8 @@ export class MapsService {
         window.scroll({ top: card.offsetTop - 100, behavior: "smooth" });
         card.classList.add("highlight")
       })
+
+
       this.markers.push({marker: marker, infowindow: infowindow, index: index})
       this.latlngBounds.extend(position);
       this.map.setCenter(this.latlngBounds.getCenter());
