@@ -17,7 +17,7 @@ export class PlaceDetailComponent implements OnInit {
 
   @Input() query;
   isCollapsed = true;
-  placeSaved;
+  placeSaved: boolean;
   
   place;
   images = [];

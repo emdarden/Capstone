@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavComponent implements OnInit {
 
-  stateURL;
+  stateURL: string;
   constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {

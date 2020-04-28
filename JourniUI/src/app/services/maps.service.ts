@@ -7,10 +7,10 @@ import { MapsAPILoader } from '@agm/core';
 })
 export class MapsService {
 
-  latlngBounds;
-  private mapPromise;
-  markers = [];
   map;
+  latlngBounds;
+  private mapPromise: Promise<any>;
+  markers = [];
   mapStatus$ = new Subject;
   
 

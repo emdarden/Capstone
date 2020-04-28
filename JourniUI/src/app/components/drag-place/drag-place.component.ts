@@ -1,7 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MapsService } from 'src/app/services/maps.service';
-import { MapsAPILoader } from '@agm/core';
-import { SearchResultsService } from 'src/app/services/search-results.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-drag-place',

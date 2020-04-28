@@ -27,7 +27,6 @@ export class SearchResultsService {
   }
 
   public setSearchResults(request){
-    console.log(request)
     this.searchResult$.next(null);
    
     this.servicePromise.then(() => { 
@@ -65,7 +64,7 @@ export class SearchResultsService {
             console.log(status)
           }
         })
-      }, 275 * i)
+      }, 300 * i)
       i++;
     }
     return details;

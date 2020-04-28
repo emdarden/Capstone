@@ -1,16 +1,12 @@
-import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
-import { MapsService } from 'src/app/services/maps.service';
-import { MapsAPILoader } from '@agm/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Location} from '@angular/common';
-import { EventEmitter } from 'protractor';
-import { SearchResultsService } from 'src/app/services/search-results.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { ApiService } from 'src/app/services/api.service';
-import { SavePlaceComponent } from '../save-place/save-place.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { MapsService } from 'src/app/services/maps.service';
 import { PlaceService } from 'src/app/services/place.service';
-import { Subscription, Subject } from 'rxjs';
+import { SearchResultsService } from 'src/app/services/search-results.service';
+import { SavePlaceComponent } from '../save-place/save-place.component';
 
 
 @Component({
@@ -23,14 +19,13 @@ export class CardComponent implements OnInit {
   @Input() showMap;
   @Input() index;
   
+  map;
   cardName: string;
   cardImageURL: string;
   cardRating: number;
   cardTotalRatings: number;
-  map;
-  query;
-  userId;
-  placeSaved;
+  query: string;
+  placeSaved: boolean;
   allPlaces;
   allPlaces$: Subscription;
   placeSubscription$: Subscription;
@@ -74,8 +69,6 @@ export class CardComponent implements OnInit {
       this.placeSaved = this.allPlaces.includes(this.cardItem.place_id)
     })
 
-
-    // this.getAllPlaces();
   }
 
   showDetails(){

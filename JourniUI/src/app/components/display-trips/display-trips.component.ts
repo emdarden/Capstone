@@ -32,7 +32,6 @@ export class DisplayTripsComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap(params => {
         this.selectedTripId = params.get('id');
-        // console.log(this.tripId)
         return this.tripService.getAllTrips();
       })
     )
@@ -65,7 +64,7 @@ export class DisplayTripsComponent implements OnInit {
         this.trips = trips;
         console.log(this.trips)
       });
-    }, 200)   
+    }, 300)   
   }
 
   showTrip(trip: Trip){

@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
     return this.auth.isAuthenticated$.pipe(
       tap(loggedIn => {
         if(!loggedIn) {
-          console.log("here")
           this.auth.login(state.url)
         }
       })

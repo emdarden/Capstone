@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { environment } from '../environments/environment';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { CardComponent } from './components/card/card.component';
 import { DisplayResultsWrapperComponent } from './components/display-results-wrapper/display-results-wrapper.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,7 +15,6 @@ import { NavComponent } from './components/nav/nav.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PlaceDetailComponent } from './components/place-detail/place-detail.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProfileComponent } from './components/profile/profile.component';
 import { DisplayTripsComponent } from './components/display-trips/display-trips.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateTripComponent } from './components/create-trip/create-trip.component';
@@ -39,12 +37,10 @@ export const googleAPIKey = environment.googleAPIKey;
     AppComponent,
     LandingComponent,
     SearchBarComponent,
-    SearchResultsComponent,
     CardComponent, 
     DisplayResultsWrapperComponent, 
     NavComponent, 
     PlaceDetailComponent, 
-    ProfileComponent, 
     DisplayTripsComponent, 
     HeaderComponent, 
     CreateTripComponent, 

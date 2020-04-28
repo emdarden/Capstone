@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SearchResultsService } from 'src/app/services/search-results.service';
 import { MapsAPILoader } from '@agm/core';
-import { stat } from 'fs';
+import { Component, Input, OnInit } from '@angular/core';
 import { MapsService } from 'src/app/services/maps.service';
+import { SearchResultsService } from 'src/app/services/search-results.service';
 
 @Component({
   selector: 'app-filters',
@@ -38,7 +37,6 @@ export class FiltersComponent implements OnInit {
     } else {
       request = {query: this.query, type: [selected]}
     }
-    console.log(this.query)
 
     this.mapsService.removeMarkers()
     this.searchResultsService.setSearchResults(request);
