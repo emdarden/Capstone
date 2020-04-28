@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { MapsAPILoader } from '@agm/core';
 import { stat } from 'fs';
+import { MapsService } from 'src/app/services/maps.service';
 
 @Component({
   selector: 'app-filters',
@@ -15,7 +16,7 @@ export class FiltersComponent implements OnInit {
   placeService: google.maps.places.PlacesService;
   location: { lat: number; lng: number; };
 
-  constructor(private searchResultsService: SearchResultsService, private mapsAPILoader: MapsAPILoader) { 
+  constructor(private searchResultsService: SearchResultsService, private mapsAPILoader: MapsAPILoader, private mapsService: MapsService) { 
     this.servicePromise = this.mapsAPILoader.load().then(() => {
       this.placeService = new google.maps.places.PlacesService(document.createElement('div'));
     })
@@ -30,8 +31,16 @@ export class FiltersComponent implements OnInit {
   }
 
   setSelected(selected){
-    const request = {query: this.query, type: [selected]}
-    console.log(request)
+    var request;
+
+    if(selected === 'all'){
+      request = {query: "things to do in " + this.query}
+    } else {
+      request = {query: this.query, type: [selected]}
+    }
+    console.log(this.query)
+
+    this.mapsService.removeMarkers()
     this.searchResultsService.setSearchResults(request);
   }
 

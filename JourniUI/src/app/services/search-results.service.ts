@@ -26,9 +26,9 @@ export class SearchResultsService {
     return this.searchResult$.asObservable();
   }
 
-  public setSearchResults(request): Observable<any>{
-     var resultDetails;
-     this.searchResult$.next(null);
+  public setSearchResults(request){
+    console.log(request)
+    this.searchResult$.next(null);
    
     this.servicePromise.then(() => { 
       const googleSearch = query => {
@@ -49,10 +49,7 @@ export class SearchResultsService {
   
      googleSearch(request)
     })
-
-    return resultDetails;
     // this.searchResult$.next(this.sampleData);
-    // return this.sampleData
   }
 
   getDetails(results) {

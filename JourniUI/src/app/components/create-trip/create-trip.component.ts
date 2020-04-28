@@ -27,7 +27,12 @@ export class CreateTripComponent implements OnInit {
   }
 
   saveTrip(tripName){
-    var duplicate = this.trips.find(trip => trip.Name.toLowerCase() === tripName.toLowerCase());
+    var duplicate;
+
+    if(this.trips){
+      duplicate = this.trips.find(trip => trip.Name.toLowerCase() === tripName.toLowerCase());
+    }
+
     if(duplicate){
       this.duplicate = true;
     } else if(tripName.length == 0) {
@@ -42,8 +47,14 @@ export class CreateTripComponent implements OnInit {
   }
 
   getPic(){
-    var picNumber = (this.trips.length % 3) + 1
-    console.log(this.trips.length)
+    var picNumber;
+
+    if(this.trips){
+      picNumber = (this.trips.length % 3) + 1
+    } else {
+      picNumber = 1
+    }
+
     return `../../../assets/imgs/world_map_${picNumber}.png`
   }
 

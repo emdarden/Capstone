@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchResultsService } from 'src/app/services/search-results.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { MapsAPILoader } from '@agm/core';
-import { MapsService } from 'src/app/services/maps.service';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations'
+import { MapsService } from 'src/app/services/maps.service';
+import { SearchResultsService } from 'src/app/services/search-results.service';
 
 @Component({
   selector: 'app-display-results-wrapper',
@@ -30,7 +28,6 @@ export class DisplayResultsWrapperComponent implements OnInit{
     private route: ActivatedRoute,
     private service: SearchResultsService,
     private mapsService: MapsService,
-    private location: Location,
     private router: Router) {
       document.body.style.margin = "0 75px"
      }
@@ -56,6 +53,7 @@ export class DisplayResultsWrapperComponent implements OnInit{
     })
     
     this.searchSubscription = this.service.getSearchResults().subscribe(results => {
+      console.log(results)
       this.searchResults = results;
       this.loading = false;
     })

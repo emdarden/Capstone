@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -37,10 +38,12 @@
     "auth0-js": "^9.13.2",
     "auth0-lock": "^11.23.0",
     "bootstrap": "^4.4.1",
+    "cypress": "^4.4.1",
     "lottie-web": "^5.6.8",
     "ngx-lottie": "^5.4.0",
     "rxjs": "~6.5.4",
     "rxjs-compat": "^6.5.5",
+    "sinon": "^9.0.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

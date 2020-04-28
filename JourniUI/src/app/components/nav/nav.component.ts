@@ -16,10 +16,6 @@ export class NavComponent implements OnInit {
     this.stateURL = this.router.routerState.snapshot.url;
   }
 
-  showProfile() {
-    this.router.navigate(['/profile']);
-  }
-
   showTrips() {
     this.router.navigate(['/trips']);
   }

@@ -35,6 +35,7 @@ export class CardComponent implements OnInit {
   allPlaces$: Subscription;
   placeSubscription$: Subscription;
   placeStatus = new Subject();
+  stateURL: string;
 
   constructor(private mapsService: MapsService, 
     private route: ActivatedRoute, 
@@ -48,6 +49,8 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.stateURL = this.router.routerState.snapshot.url;
 
     this.cardName = this.cardItem.name; //remove ".result" in prod
     this.cardImageURL = this.cardItem.photos[0].getUrl(); //change url to getUrl() in prod
@@ -89,7 +92,7 @@ export class CardComponent implements OnInit {
   savePlace(){
     event.stopPropagation();
     if(!this.auth.loggedIn){
-      this.auth.login();
+      this.auth.login(this.stateURL);
     } else if(!this.placeSaved) {      
       const modalRef = this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
       modalRef.componentInstance.place = this.cardItem;

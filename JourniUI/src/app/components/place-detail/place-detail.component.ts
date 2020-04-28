@@ -18,13 +18,14 @@ export class PlaceDetailComponent implements OnInit {
   @Input() query;
   isCollapsed = true;
   placeSaved;
-
+  
   place;
   images = [];
   showNavigationArrows = true;
   showNavigationIndicators = true;
   allPlaces;
   allPlaces$: Subscription;
+  stateURL: string;
 
   constructor(
     private searchService: SearchResultsService, 
@@ -35,6 +36,7 @@ export class PlaceDetailComponent implements OnInit {
     private placeService: PlaceService) { }
 
   ngOnInit(): void {
+    this.stateURL = this.router.routerState.snapshot.url;
 
     this.searchService.getSelectedPlace().subscribe(place => {
       this.place = place;
@@ -62,7 +64,7 @@ export class PlaceDetailComponent implements OnInit {
 
   savePlace(){
     if(!this.auth.loggedIn){
-      this.auth.login();
+      this.auth.login(this.stateURL);
     } else if(!this.placeSaved) {      
       const modalRef = this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
       modalRef.componentInstance.place = this.place;
