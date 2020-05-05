@@ -71,13 +71,13 @@ export class CardComponent implements OnInit {
 
   }
 
-  showDetails(){
+  showDetails(event$?){
     event.stopPropagation();
     var position = {lat: this.cardItem.geometry.location.lat(), lng: this.cardItem.geometry.location.lng()}
     // var position = this.cardItem.geometry.location;
     this.mapsService.setMapStatus(true);
     this.mapsService.highlightMarker(position, this.index);
-    this.router.navigate(['/search'], { queryParams: {query: this.query, place: this.cardName}}).then;
+    this.router.navigate(['/search'], { queryParams: {query: this.query, place: this.cardName}});
     this.searchService.setSelectedPlace(this.cardItem);
     this.searchService.setIsDetailOpen(true);
   }

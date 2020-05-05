@@ -65,7 +65,7 @@ export class PlaceDetailComponent implements OnInit {
   savePlace(){
     if(!this.auth.loggedIn){
       this.auth.login(this.stateURL);
-    } else if(!this.placeSaved) {      
+    } else if(!this.placeSaved) { 
       const modalRef = this.modalService.open(SavePlaceComponent, { centered: true , size: 'sm' });
       modalRef.componentInstance.place = this.place;
       modalRef.componentInstance.placeSaved.subscribe(res => {

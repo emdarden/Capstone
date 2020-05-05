@@ -6,7 +6,7 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
 import { MapsService } from 'src/app/services/maps.service';
 import { of, Subject } from 'rxjs';
 
-fdescribe('DisplayResultsWrapperComponent', () => {
+describe('DisplayResultsWrapperComponent', () => {
   let component: DisplayResultsWrapperComponent;
   let fixture: ComponentFixture<DisplayResultsWrapperComponent>;
   let mockSearchResultsService: jasmine.SpyObj<SearchResultsService>;

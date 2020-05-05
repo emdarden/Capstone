@@ -60,11 +60,20 @@ namespace JourniAPI.Services
 
             var item = user.Trips.Single(trip1 => trip1._id == tripId);
 
+            item.Days.ForEach(day => day.Places.ForEach(place => {
+                var index = user.Places.FindIndex(p => p == place.PlaceId);
+                user.Places.RemoveAt(index);
+            }));
+
             user.Trips.Remove(item);
 
             _users.FindOneAndUpdate(
                 user => user.User_ID == userID,
                 Builders<User>.Update.Set("Trips", user.Trips));
+
+            _users.FindOneAndUpdate(
+                user => user.User_ID == userID,
+                Builders<User>.Update.Set("Places", user.Places));
         }
 
     }
