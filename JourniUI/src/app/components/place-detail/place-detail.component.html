@@ -1,6 +1,7 @@
 <div class="header">
     <i class="fas fa-chevron-left" (click)="hideDetails()"></i>
-    <p *ngIf="query">Traveling to {{ query }}</p>
+    <p *ngIf="query !== 'here'">Traveling to {{ query }}</p>
+    <p *ngIf="query === 'here'">Where You Are</p>
 </div>
 
 <div class="carousel">

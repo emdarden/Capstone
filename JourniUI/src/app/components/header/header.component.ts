@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   }
 
   homeSearch(){
-    this.router.navigate(['/search'], { queryParams: {query: ""}});
+    this.router.navigate(['/search'], { queryParams: {query: "here"}});
   }
 
 }

@@ -14,6 +14,7 @@ export class FiltersComponent implements OnInit {
   servicePromise: Promise<void>;
   placeService: google.maps.places.PlacesService;
   location: { lat: number; lng: number; };
+  radius;
 
   constructor(private searchResultsService: SearchResultsService, private mapsAPILoader: MapsAPILoader, private mapsService: MapsService) { 
     this.servicePromise = this.mapsAPILoader.load().then(() => {
@@ -41,5 +42,35 @@ export class FiltersComponent implements OnInit {
     this.mapsService.removeMarkers()
     this.searchResultsService.setSearchResults(request);
   }
+
+  clear(){
+    (<HTMLInputElement>document.getElementById('center')).value = null;
+    var request = {query: "things to do in " + this.query}
+
+    this.mapsService.removeMarkers()
+    this.searchResultsService.setSearchResults(request);
+  }
+
+  search(center){
+    var request; 
+    this.mapsService.removeMarkers()
+
+    console.log(center)
+    console.log(parseInt(this.radius))
+
+    this.servicePromise.then(() => {
+      this.placeService.findPlaceFromQuery({query: center, fields: ['name', 'geometry']}, (results, status) => {
+        const location = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()}
+        console.log(location)
+
+        request = {query: "things to do in " + this.query, location: location, radius: (parseInt(this.radius) * 1000)}
+        this.searchResultsService.setSearchResults(request)
+
+        console.log(status)
+      })
+    })
+  }
+
+  
 
 }

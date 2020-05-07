@@ -26,6 +26,7 @@
                 color: white;
                 outline: none;
             }
+
         }
 
         .sub-btn {
@@ -35,6 +36,37 @@
                 background-color: $journi-green;
             }
         }
-        
+
+        .distance-filter {
+
+            padding: 10px;
+
+            .radius {
+                display: flex;
+
+                select {
+                    margin-right: 5px;
+                    height: 30px;
+                }
+            }
+    
+            .btns {
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    color: white;
+                    background-color: $journi-green;
+                    border: none;
+                    border-radius: 2px;
+                }
+            }
+
+            .center {
+                margin-bottom: 10px;
+                
+            }
+        }
+
     }
 }

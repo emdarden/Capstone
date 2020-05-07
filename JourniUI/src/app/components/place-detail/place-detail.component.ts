@@ -39,6 +39,7 @@ export class PlaceDetailComponent implements OnInit {
     this.stateURL = this.router.routerState.snapshot.url;
 
     this.searchService.getSelectedPlace().subscribe(place => {
+      console.log(place)
       this.place = place;
       // this.images[0] = this.place.photos[0].url;
       this.getImages(this.place.photos);

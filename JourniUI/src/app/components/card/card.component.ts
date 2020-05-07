@@ -72,6 +72,7 @@ export class CardComponent implements OnInit {
   }
 
   showDetails(event$?){
+    console.log('showing')
     event.stopPropagation();
     var position = {lat: this.cardItem.geometry.location.lat(), lng: this.cardItem.geometry.location.lng()}
     // var position = this.cardItem.geometry.location;

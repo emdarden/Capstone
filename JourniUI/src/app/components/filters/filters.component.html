@@ -2,7 +2,30 @@
     <div ngbDropdown class="dropdown">
         <button class="filter-btn" id="dropdownBasic1" ngbDropdownToggle>Distance</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-  
+            <div class="distance-filter">
+                <div class="radius">
+                    <select [(ngModel)]="radius">
+                        <option value=".25">0.25</option>
+                        <option value=".5">0.50</option>
+                        <option value="1">1</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                    </select>
+                    <p>km</p>
+                </div>
+                <div class="center">
+                    <label>from</label>
+                    <input type="text" #center id="center">
+                </div>
+                <div class="btns">
+                    <button (click)="clear()">clear</button>
+                    <button (click)="search(center.value)">search</button>
+                </div>
+            </div>
         </div>
     </div>
     <div ngbDropdown class="dropdown">

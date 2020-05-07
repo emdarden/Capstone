@@ -24,76 +24,27 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-// Cypress.Commands.add('login', (overrides = {}) => {
-//     Cypress.log({
-//       name: 'loginViaAuth0',
-//     });
-  
-//     const options = {
-//       method: 'POST',
-//       url: Cypress.env('auth_url'),
-//       body: {
-//         grant_type: 'password',
-//         username: Cypress.env('auth_username'),
-//         password: Cypress.env('auth_password'),
-//         audience: Cypress.env('auth_audience'),
-//         scope: 'openid profile email',
-//         client_id: Cypress.env('auth_client_id'),
-//         client_secret: Cypress.env('auth_client_secret'),
-//       },
-//     };
-//     cy.request(options);
-//   });
 
-Cypress.Commands.add(
-    'login',
-    (username, password, appState = {targetUrl: '/'}) => {
-        cy.log(`Logging in as ${username}`);
-        const options = {
-            method: 'POST',
-            url: Cypress.env('auth_url'),
-            body: {
-                grant_type: 'password',
-                username: username,
-                password: password,
-                audience: Cypress.env('auth_audience'),
-                scope: 'openid profile email',
-                client_id: Cypress.env('auth_client_id'),
-                client_secret: Cypress.env('auth_client_secret'),
-            },
-        };
-        cy.request(options).then(({body}) => {
-            const {access_token, expires_in, id_token} = body;
-
-            cy.server();
-
-            // intercept Auth0 request for token and return what we have
-            cy.route({
-                url: 'oauth/token',
-                method: 'POST',
-                response: {
-                    access_token: access_token,
-                    id_token: id_token,
-                    scope: "openid profile email",
-                    expires_in: expires_in,
-                    token_type: 'Bearer'
-                }
-            });
-
-            // Auth0 SPA SDK will check for value in cookie to get appState
-            // add validate nonce (which has been removed for simplicity)
-            const stateId = 'test'; // good enough for you local machine, but not for prod
-            cy.setCookie(
-                `a0.spajs.txs.${stateId}`,
-                encodeURIComponent(JSON.stringify({
-                    "appState": appState,
-                    "scope": "openid profile email",
-                    "audience": "default",
-                    "redirect_uri": "http://localhost:4200"
-                }))
-            ).then(() => {
-                cy.visit(`/?code=kWqH0ll-FqRBMtL8&state=a0xrZ3BnN3RDdktUSWN4Tl9CMnYyTi1NLn5lZ0RDdTFMcnBDVjg0Zml0Zg%3D%3D`);
-            });
-        });
-    }
-);
+Cypress.Commands.add('login', (overrides = {}) => {
+    const payload = {
+      "realm":"Username-Password-Authentication",
+      "audience":Cypress.env('auth_audience'),
+      "client_id":Cypress.env('auth_client_id'),
+      "scope":"openid profile",
+      "grant_type":"http://auth0.com/oauth/grant-type/password-realm",
+      "username":Cypress.env('auth_username'),
+      "password":Cypress.env('auth_password')
+    };
+      
+    cy.request('POST', Cypress.env('auth_url'), payload)
+      .then((response) => {
+        const token = response.body['access_token'];
+        const expiresIn = response.body['expires_in'];
+        const idToken = response.body['id_token'];
+        const expiresAt = JSON.stringify((expiresIn * 1000) + new Date().getTime());
+        
+        window.localStorage.setItem('expires_at', expiresAt);
+        window.localStorage.setItem('access_token', token);
+        window.localStorage.setItem('id_token', idToken);
+      });
+  });

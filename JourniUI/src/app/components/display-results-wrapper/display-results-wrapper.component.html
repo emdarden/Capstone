@@ -8,8 +8,8 @@
     <div class="wrapper">
         <div class="body">
             <div class="main-results" [class.showDetail]="detailOpen">
-                <h1 *ngIf="query != ''">Traveling to {{query}}</h1>
-                <h1 *ngIf="query == ''">Traveling</h1>
+                <h1 *ngIf="query != 'here'">Traveling to {{query}}</h1>
+                <h1 *ngIf="query == 'here'">Where You Are</h1>
 
                 <div class="filters">
 

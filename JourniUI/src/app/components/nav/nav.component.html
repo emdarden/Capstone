@@ -4,6 +4,7 @@
 <div ngbDropdown *ngIf="auth.loggedIn">
     <i class="fas fa-user-circle" ngbDropdownToggle></i>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <p *ngIf="name">{{name}}</p>
         <button ngbDropdownItem (click)=showTrips()>My Trips</button>
         <button ngbDropdownItem (click)="auth.logout()">Log Out</button>
       </div>

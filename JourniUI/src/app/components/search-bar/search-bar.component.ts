@@ -17,6 +17,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   getSearchResults(query){
+    (<HTMLInputElement>document.getElementById('search')).value = null;
     this.router.navigate(['/search'], { queryParams: {query: this.titleCase(query)}});
   }
 
